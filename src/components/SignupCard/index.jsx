@@ -6,9 +6,11 @@ import CustomButton from "../../components/common/button";
 // import { FaLock } from "react-icons/fa";
 import DatePicker from "../../components/common/Datepicker";
 import { signupAdmin } from "../../shared/apirepo/signupapi";
+import { useNavigate } from "react-router-dom";
 // import Logo from '../../img/logoipsum.svg';
 
 const Signupcard = () => {
+  let navigate = useNavigate();
   return (
     <div className="login-container">
       <div className="login-card">
@@ -54,6 +56,10 @@ const Signupcard = () => {
             onClick={() => signupAdmin()}
             buttonTxt={"Sign Up"}
           />
+            <span className="signup-text">
+            New on our platform?{" "}
+            <span className="" onClick={() => navigate("/signin")}>Already have an account?</span>
+          </span>
         </form>
       </div>
     </div>

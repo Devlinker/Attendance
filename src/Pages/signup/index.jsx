@@ -5,11 +5,9 @@ import Signupcard from "../../components/SignupCard";
 const Signup = () => {
   return (
     <header className="containerleft">
-      <h1 className="leftcontent">
-        Impressive <br /> <strong>React Login Page</strong>
-        <br />
-        Template
-      </h1>
+  <h1 className="leftcontent">
+          Welcome to<br /> <strong>Your Secure Signup</strong>
+          </h1>
       <div className="containerright">
       <Signupcard/>
       </div>

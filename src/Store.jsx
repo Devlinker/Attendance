@@ -1,6 +1,6 @@
 import { createStore, compose, applyMiddleware } from "redux";
 import reduxImmutableStateInvariant from "redux-immutable-state-invariant";
-import thunk from "redux-thunk";
+import {thunk} from "redux-thunk";
 import { routerMiddleware } from "connected-react-router";
 import { persistStore, persistReducer } from "redux-persist";
 import storageSession from "redux-persist/lib/storage/session";
@@ -50,4 +50,3 @@ function configureStore() {
 }
 
 export default configureStore;
-

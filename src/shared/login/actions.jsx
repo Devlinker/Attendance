@@ -1,14 +1,11 @@
-import { axiosPublic, axiosPrivate } from "../../axios.jsx";
-import * as API_END_POINT from "../../ApiEndPoints.jsx";
+import { axiosPublic, axiosPrivate } from "../axios.jsx";
+import * as API_END_POINT from "../ApiEndPoints.jsx";
 import {
   LOGIN_ERROR,
   LOGIN_SUCCESS,
-//   LOGOUT,
+  LOGOUT,
   LOGIN_INIT,
-//   USER_PROFILE_FAILURE,
-//   USER_PROFILE_SUCCESS,
-//   USER_PROFILE
-} from "../../ActionTypes.jsx";
+} from "../ActionTypes.jsx";
 
 export function login(formData) {
   return async (dispatch) => {
