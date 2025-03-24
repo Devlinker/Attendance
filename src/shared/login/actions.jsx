@@ -6,6 +6,7 @@ import {
   LOGOUT,
   LOGIN_INIT,
 } from "../ActionTypes.jsx";
+import { notification } from "antd";
 
 export function login(formData) {
   return async (dispatch) => {
@@ -13,16 +14,13 @@ export function login(formData) {
       type: LOGIN_INIT,
     });
     try {
-      const response = await axiosPublic.post(API_END_POINT.LOGIN, {
-        email: formData.username,
-        password: formData.password,
-      });
+      const response = await axiosPublic.post(API_END_POINT.LOGIN, formData);
 
       if (response.status === 200) {
         const dataObject = response.data;
         axiosPrivate.defaults.headers.common.Authorization = `Bearer ${dataObject.data.access_token}`;
         localStorage.setItem("token", dataObject.data.access_token);
-        localStorage.setItem('refreshtoken', dataObject.data.refresh_token);
+        localStorage.setItem("refreshtoken", dataObject.data.refresh_token);
         dispatch({
           type: LOGIN_SUCCESS,
           payload: response.data,

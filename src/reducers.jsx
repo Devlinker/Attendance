@@ -7,11 +7,13 @@ import { connectRouter } from "connected-react-router";
 
 import LoginReducer from "./shared/login";
 import UserReducer from "./shared/userlist";
+import SignupReducer from "./shared/signup";
 
 export default function createReducer(history) {
   const rootReducer = combineReducers({
     router: connectRouter(history),
     login: LoginReducer,
+    Signup: SignupReducer,
     user: UserReducer,
   });
 

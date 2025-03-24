@@ -2,7 +2,6 @@ import React, { use, useEffect, useState } from "react";
 import "./signincard.scss";
 import CommonInput from "../../components/common/input/commonInput";
 import Commoncheckbox from "../../components/common/checkbox/commoncheckbox";
-import { notification } from "antd";
 import CustomButton from "../common/button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,27 +19,7 @@ const SignInCard = () => {
   const [disable, setDisable] = useState("");
   const [err, setErr] = useState({ email: false, pass: false });
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  // useEffect(() => {
-  //   let timeoutId;
-  //   if (!isAuthenticatedRef.current && isAuthenticated === true) {
-  //     message.success("Logged in Successfully");
-  //     navigate("/");
-  //   } else if (!isAuthenticatedRef.current && isAuthenticated === false) {
-  //     message.error("User Credentials Invalid");
-  //     timeoutId = setTimeout(() => {
-  //       setDisable(false);
-  //     }, 3000);
-  //   } else if (isAuthenticated === true) {
-  //     navigate("/");
-  //   }
-  //   isAuthenticatedRef.current = isAuthenticated;
-  //   return () => {
-  //     if (timeoutId) {
-  //       clearTimeout(timeoutId);
-  //     }
-  //   };
-  // }, [isAuthenticated]);
-
+  
   const handleLogin = () => {
     let hasError = false;
     if (email === "" || email === null || !emailRegex.test(email)) {
@@ -53,14 +32,13 @@ const SignInCard = () => {
     }
     if (!hasError) {
       setDisable(true);
-      dispatch(login({ username: email, password }));
+      dispatch(login({ email, password }));
     }
   };
 
   useEffect(() => {
-    message.error("Not valid");
-  }, [error]);
-
+    message.error("test");
+  }, []);
 
   return (
     <div className="login-container">
