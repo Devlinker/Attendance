@@ -19,6 +19,28 @@ const SignInCard = () => {
   const [disable, setDisable] = useState("");
   const [err, setErr] = useState({ email: false, pass: false });
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  
+  // useEffect(() => {
+  //   let timeoutId;
+  //   if (!isAuthenticatedRef.current && isAuthenticated === true) {
+  //     message.success("Logged in Successfully");
+  //     navigate("/");
+  //   } else if (!isAuthenticatedRef.current && isAuthenticated === false) {
+  //     message.error("User Credentials Invalid");
+  //     timeoutId = setTimeout(() => {
+  //       setDisable(false);
+  //     }, 3000);
+  //   } else if (isAuthenticated === true) {
+  //     navigate("/");
+  //   }
+  //   isAuthenticatedRef.current = isAuthenticated;
+  //   return () => {
+  //     if (timeoutId) {
+  //       clearTimeout(timeoutId);
+  //     }
+  //   };
+  // }, [isAuthenticated]);
   
   const handleLogin = () => {
     let hasError = false;

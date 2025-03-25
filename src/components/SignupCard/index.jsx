@@ -109,7 +109,7 @@ const Signupcard = () => {
             // errorText="Enter a valid password"
           />
           <span style={{ fontWeight: "bold" }}>Date of Birth</span>
-          <DatePicker onChange={(e) => setDob(dayjs(e).format("DD-MM-YYYY"))} />
+          <DatePicker onChange={(e) => setDob(dayjs(e).format("YYYY-MM-DD"))} />
           <CommonInput
             label="Number"
             type="number"
