@@ -11,6 +11,13 @@ import { message } from "antd";
 
 const SignInCard = () => {
   let navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state) => state.login);
+
+  useEffect(() => {
+  if (isAuthenticated) {
+    navigate("/dashboard")
+  }
+}, [isAuthenticated]);
 
   const dispatch = useDispatch();
   const { error } = useSelector((state) => state.login);

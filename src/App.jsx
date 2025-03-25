@@ -1,17 +1,18 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Signin from "./Pages/signin";
-import Signup from "./Pages/signup";
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { ROUTES } from "./utils/routes";
+import { useDispatch, useSelector } from "react-redux";
+import Layout from "./Layout";
 
 function PrivateRoute({ element }) {
   const { isAuthenticated } = useSelector((state) => state.login);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      dispatch(getUserProfile());
-    }
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     dispatch(getUserProfile());
+  //   }
+  // }, [isAuthenticated]);
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
@@ -22,7 +23,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-      {ROUTES.map(({ path, element, isPrivate }) => (
+        {ROUTES.map(({ path, element, isPrivate }) => (
           <Route
             path={path}
             element={
