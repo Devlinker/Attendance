@@ -3,7 +3,11 @@ import { Avatar, Button, Modal } from 'antd';
 import Profilecard from '../../components/Profilecard';
 import Profile from '../../assets/profile.png'
 import '../dashboard/dashboard.scss'
-const App = () => {
+import { useSelector } from 'react-redux';
+const Dashboard = () => {
+  const { userProfile } = useSelector((state) => state.profile);
+
+  console.log(userProfile)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -26,4 +30,4 @@ const App = () => {
     </>
   );
 };
-export default App;
+export default Dashboard;

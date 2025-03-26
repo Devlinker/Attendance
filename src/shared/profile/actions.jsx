@@ -8,7 +8,7 @@ export function getUserProfile() {
         type: USER_PROFILE,
       });
       try {
-        const response = await axiosPrivate.get(API_END_POINT.USER_PROFILE);
+        const response = await axiosPrivate.get(API_END_POINT.PROFILE);
   
         if (response.status === 200) {
           dispatch({

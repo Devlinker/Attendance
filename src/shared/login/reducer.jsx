@@ -4,7 +4,6 @@ const INIT_STATE = {
   error: null,
   isAuthenticated: null,
   profile: {},
-  userProfile: {},
 };
 
 export default (state = INIT_STATE, action) => {

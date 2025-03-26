@@ -2,8 +2,6 @@ import {LOGOUT, USER_PROFILE_SUCCESS, USER_PROFILE_FAILURE } from "../ActionType
 
 const INIT_STATE = {
   error: null,
-  isAuthenticated: null,
-  profile: {},
   userProfile: {},
 };
 

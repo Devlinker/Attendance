@@ -16,7 +16,7 @@ export default function createReducer(history) {
     login: LoginReducer,
     Signup: SignupReducer,
     user: UserReducer,
-    Profile: ProfileReducer
+    profile: ProfileReducer
   });
 
   return rootReducer;
