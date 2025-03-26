@@ -6,7 +6,7 @@ import Layout from "./Layout";
 
 function PrivateRoute({ element }) {
   const { isAuthenticated } = useSelector((state) => state.login);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // useEffect(() => {
   //   if (isAuthenticated) {

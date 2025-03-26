@@ -120,7 +120,7 @@ const Signupcard = () => {
             onChange={(e) => setNumber(e)}
             error={err.pass ? !!(password === "" || password === null) : false}
             customInputStyles={{ marginBottom: 20 }}
-            errorText="Enter a valid password"
+            errorText="Enter a valid Number"
           />
           <div className="options">
             <Commoncheckbox />

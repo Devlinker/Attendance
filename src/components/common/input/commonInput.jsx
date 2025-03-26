@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "./input.scss";
 import { Input, InputNumber } from "antd";
 
@@ -7,21 +7,31 @@ const CommonInput = ({
   type = "text",
   width = "100%",
   height = "40px",
+  labelPosition = "above", // "above", "below", "side"
   ...rest
 }) => {
   return (
-    <div style={{ marginBottom: "1rem" }}>
-      {label && (
+    <div
+      style={{
+        marginBottom: "1rem",
+        display: labelPosition === "side" ? "flex" : "block",
+        alignItems: labelPosition === "side" ? "center" : "unset",
+      }}
+    >
+      {label && labelPosition !== "below" && (
         <label
           style={{
-            display: "block",
-            marginBottom: "0.5rem",
+            display: labelPosition === "side" ? "inline-block" : "block",
+            marginBottom: labelPosition === "above" ? "0.5rem" : "0",
+            marginRight: labelPosition === "side" ? "0.5rem" : "0",
             fontWeight: "bold",
+            width: labelPosition === "side" ? "100px" : "auto", // Adjust label width for side positioning
           }}
         >
           {label}
         </label>
       )}
+
       {type === "password" ? (
         <Input.Password style={{ width, height }} {...rest} />
       ) : type === "number" ? (
@@ -33,6 +43,18 @@ const CommonInput = ({
         />
       ) : (
         <Input style={{ width, height }} {...rest} />
+      )}
+
+      {label && labelPosition === "below" && (
+        <label
+          style={{
+            display: "block",
+            marginTop: "0.5rem",
+            fontWeight: "bold",
+          }}
+        >
+          {label}
+        </label>
       )}
     </div>
   );

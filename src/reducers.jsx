@@ -8,6 +8,7 @@ import { connectRouter } from "connected-react-router";
 import LoginReducer from "./shared/login";
 import UserReducer from "./shared/userlist";
 import SignupReducer from "./shared/signup";
+import ProfileReducer from "./shared/profile"
 
 export default function createReducer(history) {
   const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ export default function createReducer(history) {
     login: LoginReducer,
     Signup: SignupReducer,
     user: UserReducer,
+    Profile: ProfileReducer
   });
 
   return rootReducer;
