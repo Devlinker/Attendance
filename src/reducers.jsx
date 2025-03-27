@@ -8,7 +8,8 @@ import { connectRouter } from "connected-react-router";
 import LoginReducer from "./shared/login";
 import UserReducer from "./shared/userlist";
 import SignupReducer from "./shared/signup";
-import ProfileReducer from "./shared/profile"
+import ProfileReducer from "./shared/profile";
+import checkinreducer from "./shared/checkin";
 
 export default function createReducer(history) {
   const rootReducer = combineReducers({
@@ -16,7 +17,9 @@ export default function createReducer(history) {
     login: LoginReducer,
     Signup: SignupReducer,
     user: UserReducer,
-    profile: ProfileReducer
+    profile: ProfileReducer,
+    checkin: checkinreducer,
+
   });
 
   return rootReducer;

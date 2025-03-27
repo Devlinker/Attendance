@@ -1,32 +1,22 @@
 import React, { useState } from 'react';
-import { Avatar, Button, Modal } from 'antd';
-import Profilecard from '../../components/Profilecard';
-import Profile from '../../assets/profile.png'
-import '../dashboard/dashboard.scss'
+import './dashboard.scss'
 import { useSelector } from 'react-redux';
+import CommonClock from '../../components/common/commonclock/commonclock';
+import CustomButton from '../../components/common/button';
+import Location from '../../components/location';
+import { MdPadding } from 'react-icons/md';
 const Dashboard = () => {
-  const { userProfile } = useSelector((state) => state.profile);
 
-  console.log(userProfile)
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
   return (
     <>
-      <span className='dashboardcontent' typeof='button' onClick={showModal}>
-        <img className='downloadimg' src={Profile} style={{width: "50px"}} alt="" />
-        <h4>User Name </h4>
-      </span>
-      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-       <Profilecard />
-      </Modal>
+      <CommonClock />
+      <CustomButton 
+      buttonTxt={"Check in"}
+      width={"100px"}/>
+      <CustomButton
+      buttonTxt={"Check Out"}
+      width={"100px"} />
+      <Location />
     </>
   );
 };

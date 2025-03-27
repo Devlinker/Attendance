@@ -6,4 +6,6 @@ export const LOGIN = `${BASE_URL}/admin/login/`;
 export const USERLIST = `${BASE_URL}/user/list/`;
 export const SIGNUP = `${BASE_URL}/admin/signup/`;
 export const PROFILE = `${BASE_URL}/user/profile/`;
+export const CHECKIN = `${BASE_URL}/staff-attendance/check-in/`;
+
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Flex } from "antd";
-const CustomButton = ({ onClick, className,width, children,type= "primary", buttonTxt}) => (
+const CustomButton = ({ onClick, className,width, children,type= "primary", buttonTxt }) => (
   <div
     className={`${className} `}
     style={{

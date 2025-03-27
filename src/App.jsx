@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { ROUTES } from "./utils/routes";
 import { useDispatch, useSelector } from "react-redux";
-import Layout from "./Layout";
 import { getUserProfile } from "./shared/profile";
+import AppLayout from "./Layout";
 
 function PrivateRoute({ element }) {
   const { isAuthenticated } = useSelector((state) => state.login);
@@ -29,7 +29,7 @@ const App = () => {
             path={path}
             element={
               isPrivate ? (
-                <PrivateRoute element={<Layout>{element}</Layout>} />
+                <PrivateRoute element={<AppLayout>{element}</AppLayout>} />
               ) : (
                 element
               )

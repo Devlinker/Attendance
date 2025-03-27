@@ -1,4 +1,4 @@
-import { Avatar } from 'antd';
+import { Avatar, DatePicker } from 'antd';
 import React from 'react'
 import CommonInput from '../common/input/commonInput';
 import '../Profilecard/profilecard.scss'

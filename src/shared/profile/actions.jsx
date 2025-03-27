@@ -1,4 +1,4 @@
-import { axiosPublic, axiosPrivate } from "../axios.jsx";
+import { axiosPrivate } from "../axios.jsx";
 import * as API_END_POINT from "../ApiEndPoints.jsx";
 import { USER_PROFILE, USER_PROFILE_FAILURE, USER_PROFILE_SUCCESS } from "../ActionTypes";
 

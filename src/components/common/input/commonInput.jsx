@@ -25,7 +25,7 @@ const CommonInput = ({
             marginBottom: labelPosition === "above" ? "0.5rem" : "0",
             marginRight: labelPosition === "side" ? "0.5rem" : "0",
             fontWeight: "bold",
-            width: labelPosition === "side" ? "100px" : "auto", // Adjust label width for side positioning
+            width: labelPosition === "side" ? "100px" : "auto", 
           }}
         >
           {label}
