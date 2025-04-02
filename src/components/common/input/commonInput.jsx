@@ -3,6 +3,7 @@ import "./input.scss";
 import { Input, InputNumber } from "antd";
 
 const CommonInput = ({
+  error,
   label,
   type = "text",
   width = "100%",
@@ -41,7 +42,7 @@ const CommonInput = ({
           step={0}
           {...rest}
         />
-      ) : (
+              ) : (
         <Input style={{ width, height }} {...rest} />
       )}
 
@@ -55,6 +56,9 @@ const CommonInput = ({
         >
           {label}
         </label>
+      )}
+      {error&&(
+        <p className="error"> {error} </p>
       )}
     </div>
   );

@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import { ROUTES } from "./utils/routes";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "./shared/profile";
@@ -15,7 +21,7 @@ function PrivateRoute({ element }) {
     }
   }, [isAuthenticated]);
   if (!isAuthenticated) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/signin" />;
   }
   return element;
 }

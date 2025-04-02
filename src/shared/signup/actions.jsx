@@ -9,6 +9,7 @@ export function Signup(formData) {
     });
     try {
       const response = await axiosPublic.post(API_END_POINT.SIGNUP, formData);
+      console.log(response, "response pass");
 
       if (response.status === 200) {
         const dataObject = response.data;
@@ -19,13 +20,15 @@ export function Signup(formData) {
           type: SIGNUP_SUCCESS,
           payload: response.data,
         });
-      } else if (response.status === 400) {
+      } else if (response.status !== 200) {
         dispatch({
           type: SIGNUP_ERROR,
           payload: response.data,
         });
+        console.log(response, "response failed");
       }
     } catch (err) {
+      alert(err?.response?.data?.message);
       dispatch({
         type: SIGNUP_ERROR,
         payload: err?.response?.data,

@@ -1,12 +1,12 @@
 import { axiosPublic, axiosPrivate } from "../axios.jsx";
 import * as API_END_POINT from "../ApiEndPoints.jsx";
+// import { useNavigate } from "react-router-dom";
 import {
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   LOGOUT,
   LOGIN_INIT,
 } from "../ActionTypes.jsx";
-import { notification } from "antd";
 
 export function login(formData) {
   return async (dispatch) => {
@@ -37,5 +37,15 @@ export function login(formData) {
         payload: err?.response?.data,
       });
     }
+  };
+}
+
+export function logoutAction() {
+  return async (dispatch) => {
+    localStorage.clear();
+    axiosPrivate.defaults.headers.common.Authorization = "";
+    await dispatch({
+      type: LOGOUT,
+    });
   };
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { DatePicker, Space } from 'antd';
-const Datepicker = ({onChange}) => (
+import "../input/input.scss"
+const Datepicker = ({onChange,error}) => (
     <>
     <DatePicker
       format={{
@@ -9,6 +10,9 @@ const Datepicker = ({onChange}) => (
         }}
         onChange={onChange}
         />
+        {error&&(
+          <p className='errorDate'>Date is Required</p>
+        )}
     </>
 
 );

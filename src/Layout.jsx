@@ -54,7 +54,7 @@ const AppLayout = ({children}) => {
           <div
             style={{
               padding: 24,
-              minHeight: 360,
+              height:"calc(100% - 50px)",
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
             }}
