@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 const Signup = () => {
   const dispatch = useDispatch();
   return (
-    <header className="containerleft">
+    <header className="containerleft page-center">
       <h1 className="leftcontent">
         Welcome to
         <br /> <strong>Your Secure Signup</strong>

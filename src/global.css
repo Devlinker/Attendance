@@ -8,3 +8,8 @@
 :root{
     font-family: "Plus Jakarta Sans", sans-serif;
 }
+.page-center{
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}

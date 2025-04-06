@@ -10,6 +10,7 @@ import { ROUTES } from "./utils/routes";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "./shared/profile";
 import AppLayout from "./Layout";
+import "./global.css"
 
 function PrivateRoute({ element }) {
   const { isAuthenticated } = useSelector((state) => state.login);

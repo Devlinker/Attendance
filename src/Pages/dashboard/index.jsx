@@ -96,7 +96,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="checkinclock">
+    <div className="checkinclock page-center">
       <div className="checkinbtn">
         {/* <CustomButton
           disabled={

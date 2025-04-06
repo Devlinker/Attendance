@@ -6,7 +6,6 @@ import CustomButton from "../common/button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../shared/login/actions";
-import { message } from "antd";
 // import Logo from '../../img/logoipsum.svg';
 
 const SignInCard = () => {
@@ -50,7 +49,7 @@ const SignInCard = () => {
           <img src="https://www.cartoonmango.com/cm-logo.gif" alt="logo" />
         </div> */}
         {/* <h2>Welcome to Cartoon Mango! 👋</h2> */}
-        {/* <p>Please sign in to your account and start the adventure</p> */}
+        <h2>Login</h2>
         <form className="login-form">
           <CommonInput
             label="Email"
@@ -95,9 +94,9 @@ const SignInCard = () => {
             onClick={handleLogin}
             disabled={false}
           />
-          <span className="signin-text">
+          <span className="signup-text">
             New on our platform?{" "}
-            <span onClick={() => navigate("/signup")}>Create an account</span>
+            <span onClick={() => navigate("/signup")} className="createaccount">Create an account </span>
           </span>
         </form>
       </div>

@@ -8,6 +8,7 @@ import { Signup } from "../../shared/signup/actions";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import Datepicker from "../../components/common/Datepicker";
+import { ArrowRightOutlined } from "@ant-design/icons";
 // import Logo from '../../img/logoipsum.svg';
 
 const Signupcard = () => {
@@ -167,7 +168,7 @@ const Signupcard = () => {
           <span className="signup-text">
             Already have an account?{" "}
             <span className="" onClick={() => navigate("/signin")}>
-              Signin ?
+              Signin <ArrowRightOutlined />
             </span>
           </span>
         </form>

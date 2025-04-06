@@ -19,8 +19,10 @@
 
     h2 {
       color: #191a55;
-      font-size: 18px;
-      margin-bottom: 10px;
+      font-size: 30px;
+      justify-content: center;
+      display: flex;
+      margin-bottom: 15px;
     }
 
     p {
@@ -66,11 +68,14 @@
         font-size: 15px;
         color: black;
 
-        a {
-          color: #191a55;
+        span {
+          // color: #191a55;
+          color: black;
           text-decoration: none;
           &:hover {
+            cursor: pointer;
             text-decoration: underline;
+            color: #191a55;
           }
         }
       }
