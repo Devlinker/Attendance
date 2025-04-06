@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./header.scss";
 import { LogoutOutlined } from "@ant-design/icons";
 import { logoutAction } from "../../shared/login/actions";
+import Usericons from "../common/Avatar";
+import CommonClock from "../common/commonclock/commonclock";
 
 const MainHeader = () => {
   const { userProfile } = useSelector((state) => state.profile);
@@ -18,12 +20,14 @@ const MainHeader = () => {
   return (
     <div style={{ padding: 0, background: "white" }}>
       <span className="dashboardcontent" typeof="button">
-        <img
+        <CommonClock />
+        <Usericons />
+        {/* <img
           className="downloadimg"
           src={Profile}
           style={{ width: "40px" }}
           alt=""
-        />
+        /> */}
         <h4>{userProfile?.data?.name || "User Name"}</h4>
         <div className="logoutbtn">
           <LogoutOutlined onClick={handleLogout} />

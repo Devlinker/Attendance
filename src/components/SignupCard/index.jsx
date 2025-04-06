@@ -28,6 +28,7 @@ const Signupcard = () => {
     password: "",
     dob: "",
     mobile_number: "",
+    company_id: "1",
   });
   const text_fields = [
     {
@@ -108,7 +109,12 @@ const Signupcard = () => {
     let hasError = checkValidation();
     console.log(hasError, "test", formError);
     if (!hasError) {
-      dispatch(Signup(formData));
+      console.log(formData);
+      dispatch(
+        Signup(formData, () => {
+          navigate("/signin");
+        })
+      );
     }
   };
 

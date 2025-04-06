@@ -3,9 +3,8 @@ import { LOGOUT, CHECK_IN_SUCCESS, CHECK_IN, CHECK_OUT, CHECK_OUT_SUCCESS, CHECK
 const INIT_STATE = {
   error: null,
   isAuthenticated: null,
-  profile: {},
+  checkin: {},
 };
-
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
     case CHECK_IN:
@@ -14,7 +13,7 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        profile: action.payload,
+        checkin: action.payload,
       };
 
     case CHECK_IN_FAILURE:
@@ -22,7 +21,7 @@ export default (state = INIT_STATE, action) => {
         ...state,
         error: action.payload,
         isAuthenticated: false,
-        profile: {},
+        checkin: {},
       };
 
       case CHECK_OUT:
@@ -31,7 +30,7 @@ export default (state = INIT_STATE, action) => {
         return {
           ...state,
           isAuthenticated: true,
-          profile: action.payload,
+          checkin: action.payload,
         };
   
       case CHECK_OUT_FAILURE:
@@ -39,7 +38,7 @@ export default (state = INIT_STATE, action) => {
           ...state,
           error: action.payload,
           isAuthenticated: false,
-          profile: {},
+          checkin: {},
         };
 
     case LOGOUT:

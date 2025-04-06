@@ -14,10 +14,10 @@ const SignInCard = () => {
   const { isAuthenticated } = useSelector((state) => state.login);
 
   useEffect(() => {
-  if (isAuthenticated) {
-    navigate("/dashboard")
-  }
-}, [isAuthenticated]);
+    if (isAuthenticated) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, [isAuthenticated]);
 
   const dispatch = useDispatch();
   const { error } = useSelector((state) => state.login);
@@ -26,7 +26,7 @@ const SignInCard = () => {
   const [disable, setDisable] = useState("");
   const [err, setErr] = useState({ email: false, pass: false });
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  
+
   const handleLogin = () => {
     let hasError = false;
     if (email === "" || email === null || !emailRegex.test(email)) {
@@ -42,10 +42,6 @@ const SignInCard = () => {
       dispatch(login({ email, password }));
     }
   };
-
-  useEffect(() => {
-    message.error("test");
-  }, []);
 
   return (
     <div className="login-container">

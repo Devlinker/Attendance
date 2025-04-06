@@ -10,6 +10,7 @@ import UserReducer from "./shared/userlist";
 import SignupReducer from "./shared/signup";
 import ProfileReducer from "./shared/profile";
 import checkinreducer from "./shared/checkin";
+import calenderreducer from "./shared/calendar"
 
 export default function createReducer(history) {
   const rootReducer = combineReducers({
@@ -19,7 +20,7 @@ export default function createReducer(history) {
     user: UserReducer,
     profile: ProfileReducer,
     checkin: checkinreducer,
-
+    calender: calenderreducer,
   });
 
   return rootReducer;
