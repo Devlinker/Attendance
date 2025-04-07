@@ -1,41 +1,45 @@
-// .dashboardcontent{
-//     display: flex;
-//     justify-content:end;
-//     padding: 15px 20px 15px 0px ;
-//     gap: 8px;
-//     h4{
-//         display: flex;
-//         align-items: center;
-//     }
-//     .logoutbtn{
-//         display: flex;
-//         color: red;
-//         font-size: 17px;
-//     }
-// }
 .dashboardcontent{
     display: flex;
-    padding: 13px;
-    .headerclock{
-        display: flex;
-        align-items: center;
-        justify-content: end;
-        width: 61%;
-    }
+    justify-content:end;
+    padding: 15px 20px 15px 0px ;
+    gap: 8px;
     .profiledata{
         display: flex;
-        width: 39%;
-        justify-content: end;
-        align-items: center;
         gap: 8px;
     }
-    .logoutbtn{
-        font-size: 16px;
-        color: red;
+    h4{
         display: flex;
-        justify-content: end;
-        padding-left: 10px;
-        padding-right: 10px;
         align-items: center;
     }
+    .logoutbtn{
+        display: flex;
+        color: red;
+        font-size: 17px;
+    }
 }
+// display: flex;
+// padding: 13px;
+// .dashboardcontent{
+//     .headerclock{
+//         display: flex;
+//         align-items: center;
+//         justify-content: end;
+//         width: 61%;
+//     }
+//     .profiledata{
+//         display: flex;
+//         width: 39%;
+//         justify-content: end;
+//         align-items: center;
+//         gap: 8px;
+//     }
+//     .logoutbtn{
+//         font-size: 16px;
+//         color: red;
+//         display: flex;
+//         justify-content: end;
+//         padding-left: 10px;
+//         padding-right: 10px;
+//         align-items: center;
+//     }
+// }

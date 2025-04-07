@@ -7,9 +7,9 @@ export const LOGOUT = "LOGOUT";
 
 // SIGNUP
 
-export const SIGNUP_INIT = "SIGNUP_INIT";
-export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
-export const SIGNUP_ERROR = "SIGNUP_ERROR";
+// export const SIGNUP_INIT = "SIGNUP_INIT";
+// export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+// export const SIGNUP_ERROR = "SIGNUP_ERROR";
 
 // PROFILE
 export const USER_PROFILE = "USER_PROFILE";

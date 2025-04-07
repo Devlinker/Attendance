@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CustomButton from "../../components/common/button";
 import { checkin } from "../../shared/checkin";
 import { getLocation } from "../../utils";
+import CommonClock from "../../components/common/commonclock/commonclock";
 import Tablecalendar from "../../components/common/commoncalender";
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -56,23 +57,10 @@ const Dashboard = () => {
     return `${day}-${month}-${year}, ${hours}:${minutes}:${seconds} ${ampm}`;
   }
 
-  let workinghours = updatedProfile?.working_hours;
+  // let workinghours = updatedProfile?.working_hours;
+let workinghours = updatedProfile?.working_hours?.slice(0, 5);
 
-  // const handleCheckin = () => {
-  //   getLocation()
-  //     .then(({ lat, lon }) => {
-  //       console.log("Latitude:", lat, "Longitude:", lon);
-  //       dispatch(
-  //         checkin({
-  //           latitude: lat,
-  //           longitude: lon,
-  //           user_id: 1,
-  //           project_id: 1,
-  //         })
-  //       );
-  //     })
-  //     .catch((error) => console.error(error.message));
-  // };
+
 
   const handleCheckin = () => {
     setLoading(true); // Start loading
@@ -90,59 +78,82 @@ const Dashboard = () => {
       })
       .catch((error) => {
         console.log(error);
-        // console.error(error.message);
         setLoading(false); // Stop loading on error
       });
   };
 
   return (
-    <div className="checkinclock page-center">
-      <div className="checkinbtn">
-        {/* <CustomButton
-          disabled={
-            checkinType === "checked_in" || checkinType === "checked_out"
-          }
-          buttonTxt={"Check In"}
-          width={"100px"}
-          onClick={handleCheckin}
-        />
-        <CustomButton
-          disabled={checkinType === "checked_out" || checkinType == null}
-          buttonTxt={"Check Out"}
-          width={"100px"}
-          onClick={handleCheckin}
-        /> */}
+    <>
+      <section className="worklogcontainer">
+        <div className="worklog">
+          <div className="checkincheckouttime left">
+            <h2>Work Log</h2>
+            <div className="checkinout"> Check-In </div>
+            <div className="checkinouttime">{displayCheckinTime}</div>
+            <div className="checkinout"> Check-Out</div>
+            <div className="checkinouttime">{displayCheckoutTime}</div>
+            <div> Work Time : {workinghours}</div>
+          </div>
+          <div className="centerclock">
+            <CommonClock />
+          </div>
+          <div className="checkincheckoutbtn right">
+            <CustomButton
+              disabled={
+                loading ||
+                checkinType === "checked_in" ||
+                checkinType === "checked_out"
+              }
+              buttonTxt={loading ? "Checking In..." : "Check In"}
+              width={"130px"}
+              onClick={handleCheckin}
+            />
+            <CustomButton
+              disabled={
+                loading || checkinType === "checked_out" || checkinType == null
+              }
+              buttonTxt={loading ? "Checking Out..." : "Check Out"}
+              width={"130px"}
+              onClick={handleCheckin}
+            />
+          </div>
+        </div>
+      </section>
 
-        <CustomButton
-          disabled={
-            loading ||
-            checkinType === "checked_in" ||
-            checkinType === "checked_out"
-          }
-          buttonTxt={loading ? "Checking In..." : "Check In"}
-          width={"100px"}
-          onClick={handleCheckin}
-        />
-        <CustomButton
-          disabled={
-            loading || checkinType === "checked_out" || checkinType == null
-          }
-          buttonTxt={loading ? "Checking Out..." : "Check Out"}
-          width={"100px"}
-          onClick={handleCheckin}
-        />
+      <div className="checkinclock page-center">
+        {/* <div className="checkinbtn">
+          <CustomButton
+            disabled={
+              loading ||
+              checkinType === "checked_in" ||
+              checkinType === "checked_out"
+            }
+            buttonTxt={loading ? "Checking In..." : "Check In"}
+            width={"100px"}
+            onClick={handleCheckin}
+          />
+          <CustomButton
+            disabled={
+              loading || checkinType === "checked_out" || checkinType == null
+            }
+            buttonTxt={loading ? "Checking Out..." : "Check Out"}
+            width={"100px"}
+            onClick={handleCheckin}
+          />
+        </div>
+        <div className="checkindata">
+          {/* <div>{userProfile?.data?.name || "User Name"}</div> */}
+        {/* <div> Check-In: {displayCheckinTime}</div>
+          <div> Check-Out: {displayCheckoutTime}</div>
+          <div> Work Time : {workinghours}</div>
+        </div>  */}
+
+        {/* <Popupnotification /> */}
+        <div className="tablecalendar">
+          <Tablecalendar />
+        </div>
       </div>
-      <div className="checkindata">
-        {/* <div>{userProfile?.data?.name || "User Name"}</div> */}
-        <div> Check In Time : {displayCheckinTime}</div>
-        <div> Check Out Time : {displayCheckoutTime}</div>
-        <div> Working Hours : {workinghours}</div>
-      </div>
-      {/* <Popupnotification /> */}
-      <div className="tablecalendar">
-        <Tablecalendar />
-      </div>
-    </div>
+    </>
   );
 };
 export default Dashboard;

@@ -1,22 +1,64 @@
-.checkinclock{
-    display: flex;
-    gap: 18px;
-    flex-direction: column;
-    align-items: center;
-    .checkinbtn{
-        display: flex;
-        gap: 30px;
-        .undefined{
-            width: 130px !important;
-        }
-        button{
-            padding: 18px 0px;
-            font-size: 15px;
-        }
-    }
+// .checkinclock{
+//     display: flex;
+//     gap: 18px;
+//     flex-direction: column;
+//     align-items: center;
+//     .checkinbtn{
+//         display: flex;
+//         gap: 30px;
+//         .undefined{
+//             width: 130px !important;
+//         }
+//         button{
+//             padding: 18px 0px;
+//             font-size: 15px;
+//         }
+//     }
+// }
+
     .tablecalendar{
         padding: 20px;
         border: 1px solid #ccc;
         border-radius: 10px;
     }
-}
+
+    .worklogcontainer{
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 24px;
+        .worklog{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            // .left{
+            //     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            //     padding: 25px;
+            //     border-radius: 10px;
+            // }
+            h2{
+                padding-bottom: 20px;
+            }
+            .checkinout{
+                padding-bottom: 5px;
+                font-size: 15px;
+                font-weight: 500;
+            }
+            .checkinouttime{
+                padding-bottom: 20px;
+                font-size: 14px;
+            }
+            .centerclock{
+                // border: 1px solid #ccc;
+                border-radius: 8px;
+                box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            }
+        
+        }
+        .right{
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding-right: 20px;
+        }
+    }
