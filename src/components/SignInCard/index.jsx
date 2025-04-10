@@ -94,10 +94,10 @@ const SignInCard = () => {
             onClick={handleLogin}
             disabled={false}
           />
-          <span className="signup-text">
-            New on our platform?{" "}
-            <span /* onClick={() => navigate("/signup")}*/ className="createaccount">Create an account </span>
-          </span>
+          {/* <span className="signup-text"> */}
+            {/* New on our platform?{" "} */}
+            {/* <span onClick={() => navigate("/signup")} className="createaccount">Create an account </span> */}
+          {/* </span> */}
         </form>
       </div>
     </div>

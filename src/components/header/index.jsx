@@ -16,11 +16,11 @@ const MainHeader = () => {
   };
 
   return (
-    <div style={{ padding: 0, background: "white" }} className="page-center">
+    <div style={{ padding: 0 }} className="page-center header">
       <div className="dashboardcontent">
         <div className="profiledata">
-        <Usericons />
-        <h4>{userProfile?.data?.name || "User Name"}</h4>
+          <Usericons />
+          <h4>{userProfile?.data?.name || "User Name"}</h4>
         </div>
         <div className="logoutbtn">
           <LogoutOutlined onClick={handleLogout} />

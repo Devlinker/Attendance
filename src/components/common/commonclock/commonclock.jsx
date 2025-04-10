@@ -33,14 +33,14 @@ const CommonClock = () => {
     <div className="clockmenu">
       <div
         style={{
-          display: "flex",
+          // display: "flex",
           fontSize: "17px",
           gap: "3px",
           alignItems: "center",
         }}
       >
-        <span>{formattedDate}</span>
-        <span>{formattedTime}</span>
+        <div>{formattedDate}</div>
+        <div>{formattedTime}</div>
       </div>
     </div>
   );

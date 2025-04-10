@@ -1,21 +1,25 @@
-.dashboardcontent{
+@import "../../styles/main.scss";
+.header {
+  background-color: $headerBg;
+}
+.dashboardcontent {
+  display: flex;
+  justify-content: end;
+  padding: 15px 20px 15px 0px;
+  gap: 8px;
+  .profiledata {
     display: flex;
-    justify-content:end;
-    padding: 15px 20px 15px 0px ;
     gap: 8px;
-    .profiledata{
-        display: flex;
-        gap: 8px;
-    }
-    h4{
-        display: flex;
-        align-items: center;
-    }
-    .logoutbtn{
-        display: flex;
-        color: red;
-        font-size: 17px;
-    }
+  }
+  h4 {
+    display: flex;
+    align-items: center;
+  }
+  .logoutbtn {
+    display: flex;
+    color: red;
+    font-size: 17px;
+  }
 }
 // display: flex;
 // padding: 13px;

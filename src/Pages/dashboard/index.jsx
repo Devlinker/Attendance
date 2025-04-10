@@ -6,6 +6,7 @@ import { checkin } from "../../shared/checkin";
 import { getLocation } from "../../utils";
 import CommonClock from "../../components/common/commonclock/commonclock";
 import Tablecalendar from "../../components/common/commoncalender";
+import moment from "moment";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
@@ -57,10 +58,19 @@ const Dashboard = () => {
     return `${day}-${month}-${year}, ${hours}:${minutes}:${seconds} ${ampm}`;
   }
 
+  let workinghours = updatedProfile?.working_hours;
   // let workinghours = updatedProfile?.working_hours;
-let workinghours = updatedProfile?.working_hours?.slice(0, 5);
 
+let formattedTime = workinghours
+  ? moment(workinghours, ["HH:mm", "h:mm A", "HHmm"]).format("HH") +
+    "hrs : " +
+    moment(workinghours, ["HH:mm", "h:mm A", "HHmm"]).format("mm") +
+    "mins"
+  : "";
 
+  // console.log(); // Example output: "09:30"
+
+  // let workinghours = updatedProfile?.working_hours?.slice(0, 5);
 
   const handleCheckin = () => {
     setLoading(true); // Start loading
@@ -92,7 +102,8 @@ let workinghours = updatedProfile?.working_hours?.slice(0, 5);
             <div className="checkinouttime">{displayCheckinTime}</div>
             <div className="checkinout"> Check-Out</div>
             <div className="checkinouttime">{displayCheckoutTime}</div>
-            <div> Work Time : {workinghours}</div>
+            <span className="productivityhours">Productivity Hours :</span>{" "}
+            <span>{formattedTime}</span>
           </div>
           <div className="centerclock">
             <CommonClock />
@@ -147,8 +158,6 @@ let workinghours = updatedProfile?.working_hours?.slice(0, 5);
           <div> Check-Out: {displayCheckoutTime}</div>
           <div> Work Time : {workinghours}</div>
         </div>  */}
-
-        {/* <Popupnotification /> */}
         <div className="tablecalendar">
           <Tablecalendar />
         </div>

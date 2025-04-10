@@ -1,4 +1,5 @@
 import React from "react";
+import "./button.scss"
 import { Button, Flex } from "antd";
 const CustomButton = ({
   onClick,
@@ -10,7 +11,7 @@ const CustomButton = ({
   disabled,
 }) => (
   <div
-    className={`${className} `}
+    className={`${className} ${type}`}
     style={{
       width: width || "100%",
     }}

@@ -31,13 +31,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            // .left{
-            //     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-            //     padding: 25px;
-            //     border-radius: 10px;
-            // }
             h2{
                 padding-bottom: 20px;
+                color: #825c9a;
             }
             .checkinout{
                 padding-bottom: 5px;
@@ -48,9 +44,15 @@
                 padding-bottom: 20px;
                 font-size: 14px;
             }
+            .productivityhours{
+                font-size: 14px;
+                font-weight: 500;
+            }
             .centerclock{
                 // border: 1px solid #ccc;
                 border-radius: 8px;
+                color: #825c9a;
+                font-weight: 700;
                 box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
             }
         

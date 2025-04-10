@@ -5,4 +5,4 @@ export const USERLIST = `${BASE_URL}/user/list/`;
 // export const SIGNUP = `${BASE_URL}/admin/signup/`;
 export const PROFILE = `${BASE_URL}/employee/profile/`;
 export const CHECKIN = `${BASE_URL}/staff-attendance/check-in/`;
-export const CALENDAR = `${BASE_URL}/staff-attendance/calendar/?year=2025&month=04`;
+export const CALENDAR = `${BASE_URL}/staff-attendance/calendar/`;

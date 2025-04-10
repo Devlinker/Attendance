@@ -23,7 +23,7 @@ const items = [getItem("Dashboard", "/dashboard", <PieChartOutlined />)];
 const AppLayout = ({ children }) => {
   const naviagte = useNavigate();
   const { pathname } = useLocation();
-  console.log(pathname);
+  // console.log(pathname);
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -46,17 +46,18 @@ const AppLayout = ({ children }) => {
       </Sider>
       <Layout>
         <Header />
-        <Content style={{ margin: "0 16px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            {/* <Breadcrumb.Item>User</Breadcrumb.Item>
+        <Content style={{ margin: " 16px" }}>
+          {/* <Breadcrumb style={{ margin: "16px 0" }}> */}
+          {/* <Breadcrumb.Item>User</Breadcrumb.Item>
             <Breadcrumb.Item>Bill</Breadcrumb.Item> */}
-          </Breadcrumb>
+          {/* </Breadcrumb> */}
           <div
             style={{
               padding: 24,
-              height: "calc(100% - 50px)",
-              background: colorBgContainer,
+              height: "calc(100vh - 102px)",
+              background: "#f5f5f5",
               borderRadius: borderRadiusLG,
+              overflow: "scroll",
             }}
           >
             {children}
