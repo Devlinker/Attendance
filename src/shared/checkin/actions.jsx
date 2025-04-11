@@ -10,7 +10,7 @@ import {
 } from "../ActionTypes";
 import { getUserProfile } from "../../shared/profile";
 
-export function checkin(payload) {
+export function checkin(payload, successCb) {
   return async (dispatch) => {
     dispatch({
       type: CHECK_IN,
@@ -23,6 +23,7 @@ export function checkin(payload) {
           type: CHECK_IN_SUCCESS,
           payload: response.data,
         });
+        successCb && successCb();
       } else if (response.status === 400) {
         dispatch({
           type: CHECK_IN_FAILURE,

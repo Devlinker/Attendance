@@ -18,4 +18,39 @@
   .anticon {
     color: $sidemenubuttonColor;
   }
+  .ant-menu {
+    padding-top: 11px;
+  }
+  .ant-layout-sider-children{
+    border-right: 1px solid #ccc;
+  }
+  .ant-menu-title-content {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .anticon-logout {
+    padding-right: 8px;
+  }
+  .logo {
+    padding: 35px 0px;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 120px;
+    }
+  }
+  .logoutbtn {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 20px;
+    width: max-content;
+  }
+}
+
+.main-layout-container {
+  border-radius: 8px;
+  padding: 24;
+  background-color: $mainlayoutBg;
+  height: calc(100vh - 35px);
+  overflow: scroll;
 }

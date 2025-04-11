@@ -33,7 +33,7 @@ const CommonClock = () => {
     <div className="clockmenu">
       <div
         style={{
-          // display: "flex",
+          display: "flex",
           fontSize: "17px",
           gap: "3px",
           alignItems: "center",

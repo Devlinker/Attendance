@@ -130,7 +130,8 @@ const Tablecalendar = () => {
             checkIn: "green",
             absent: "red",
             yetToCheckin: "yellow",
-            " Mandatory Holiday": "purple",
+            "Mandatory Holiday": "purple",
+            "Restricted Holiday": "black",
             Weekend: "orange",
             "Weekend Holiday": "blue"
           };

@@ -1,66 +1,140 @@
-// .checkinclock{
-//     display: flex;
-//     gap: 18px;
-//     flex-direction: column;
-//     align-items: center;
-//     .checkinbtn{
-//         display: flex;
-//         gap: 30px;
-//         .undefined{
-//             width: 130px !important;
-//         }
-//         button{
-//             padding: 18px 0px;
-//             font-size: 15px;
-//         }
-//     }
-// }
+.tablecalendar {
+  padding: 10px;
+  // border: 1px solid #ccc;
+  border-radius: 10px;
+}
 
-    .tablecalendar{
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
+.dashboardmain {
+  display: flex;
+  max-width: 100%;
+  .dashboardleft {
+    width: 75%;
+    padding: 0px 20px;
+    .worklogcontainer {
+      border-bottom: 1px solid #ccc;
+      //   padding: 25px;
+      margin-bottom: 24px;
+      .dashboard-header {
+        display: flex;
+        padding: 30px 0px;
+        justify-content: space-between;
+        border-bottom: 1px solid #ccc;
+        .centerclock {
+          display: flex;
+          align-items: center;
+          font-size: 27px;
+          .header-timer {
+          }
+        }
+        .dashboard-content {
+          h2 {
+            font-size: 32px;
+            padding-bottom: 15px;
+          }
+          p {
+            font-size: 16px;
+            // padding-bottom: 30px;
+          }
+        }
+      }
+      .divider {
+        height: 50px;
+        border-inline-start: 2px solid #ccc;
+      }
+      .worklog {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 20px 0px;
+        .checkincheckouttime {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        h2 {
+          padding-bottom: 20px;
+          color: #825c9a;
+        }
+        .checkinout {
+          // padding-bottom: 5px;
+          font-size: 25px;
+          font-weight: 500;
+        }
+        .loginout-action {
+          width: 45px;
+          height: 45px;
+          background-color: #e8e4e4;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg{
+            margin-right: 2px;
+          }
+        }
+        .checkinouttime {
+          // padding-bottom: 12px;
+          font-size: 14px;
+          font-weight: 500;
+        }
+        .productivityhours-content {
+          padding-top: 10px;
+          .productivityhours {
+            font-size: 14px;
+            font-weight: 500;
+          }
+        }
+        .centerclock {
+          border-radius: 8px;
+          color: #825c9a;
+          font-weight: 700;
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+      }
+      .right {
+        display: flex;
+        flex-direction: column;
+        button r {
+          margin-top: 5px;
+        }
+        // gap: 40px;
+        // padding-right: 20px;
+        //     padding-bottom: 12px;
+        // font-size: 14px;
+        // font-weight: 500;
+      }
     }
-
-    .worklogcontainer{
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 25px;
-        margin-bottom: 24px;
-        .worklog{
+  }
+  .dashboardright {
+    width: 25%;
+    border-left: 1px solid #ccc;
+    padding: 20px 20px 0px 20px;
+    .profilecard-container {
+      background-color: #f4f2f2;
+      padding: 30px;
+      border-radius: 20px;
+      .profiledata {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+        .profile-icons {
+          display: flex;
+          gap: 40px;
+          .profile-action {
+            background-color: white;
+            border-radius: 50%;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            h2{
-                padding-bottom: 20px;
-                color: #825c9a;
-            }
-            .checkinout{
-                padding-bottom: 5px;
-                font-size: 15px;
-                font-weight: 500;
-            }
-            .checkinouttime{
-                padding-bottom: 20px;
-                font-size: 14px;
-            }
-            .productivityhours{
-                font-size: 14px;
-                font-weight: 500;
-            }
-            .centerclock{
-                // border: 1px solid #ccc;
-                border-radius: 8px;
-                color: #825c9a;
-                font-weight: 700;
-                box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-            }
-        
+            padding: 10px;
+          }
         }
-        .right{
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            padding-right: 20px;
-        }
+      }
+      h4 {
+        font-size: 16px;
+        padding-bottom: 10px;
+      }
     }
+  }
+}
