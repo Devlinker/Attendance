@@ -26,7 +26,6 @@ const items = [getItem("Dashboard", "/dashboard", <PieChartOutlined />)];
 const AppLayout = ({ children }) => {
   const naviagte = useNavigate();
   const { pathname } = useLocation();
-  // console.log(pathname);
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },

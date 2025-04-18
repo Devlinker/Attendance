@@ -28,27 +28,60 @@
 }
 .ant-badge.ant-badge-status .ant-badge-status-text {
   font-size: 11px !important;
+
+  .calendar-checkinout-ui{
+    font-size: 10px;
+    letter-spacing: -0.3px;
+    font-weight: 500;
+  }
+  .calendar-ph{
+    font-size: 9px;
+    font-weight: 500;
+  }
+  font-size: 10px !important;
+  // letter-spacing: -0.3px;
+  // font-weight: 500;
 }
 .events .ant-badge-status {
   overflow: inherit !important;
   white-space: normal !important;
 }
-.ant-radio-group{
+.ant-radio-group {
   display: none;
 }
+.ant-badge-status-success {
+  background-color: #52c41a59 !important;
+}
 .purple .ant-badge-status-dot {
-  background-color: purple !important;
+  background-color: #cccccc7d !important;
 }
-.red .ant-badge-status-dot{
-  background-color: red !important;
+.red .ant-badge-status-dot {
+  background-color: #ee0a0a85 !important;
 }
-.orange .ant-badge-status-dot{
-  background-color: orange !important;
+.orange .ant-badge-status-dot {
+  background-color: #ffa50066 !important;
 }
-.blue .ant-badge-status-dot{
-  background-color: blue !important;
+.blue .ant-badge-status-dot {
+  background-color: #0000ff73 !important;
 }
-.black .ant-badge-status-dot{
-  background-color: black !important;
+.black .ant-badge-status-dot {
+  background-color: cyan !important;
 }
-
+.ant-badge {
+  position: unset !important;
+}
+.ant-badge-status-dot {
+  top: 2px !important;
+  // display: inline-block;
+  width: 27px !important;
+  height: 27px !important;
+  // vertical-align: middle;
+  border-radius: 5px !important;
+  position: absolute !important;
+  right: 3px !important;
+  z-index: 0 !important;
+}
+.ant-picker-calendar-date-value {
+  z-index: 1 !important;
+  position: relative !important;
+}

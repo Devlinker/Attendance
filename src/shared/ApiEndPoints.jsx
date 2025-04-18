@@ -6,3 +6,5 @@ export const USERLIST = `${BASE_URL}/user/list/`;
 export const PROFILE = `${BASE_URL}/employee/profile/`;
 export const CHECKIN = `${BASE_URL}/staff-attendance/check-in/`;
 export const CALENDAR = `${BASE_URL}/staff-attendance/calendar/`;
+export const WORKLOGS = `${BASE_URL}/user-log/list/`;
+
