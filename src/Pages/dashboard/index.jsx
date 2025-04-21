@@ -3,7 +3,7 @@ import "./dashboard.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { checkin } from "../../shared/checkin";
 import { getLocation } from "../../utils";
-import Tablecalendar from "../../components/common/commoncalender";
+import Tablecalendar from "../../components/common/tablecalender";
 import { FiLogIn, FiLogOut, FiPhone } from "react-icons/fi";
 import Usericons from "../../components/common/Avatar";
 import { MdOutlineEmail, MdOutlineTimer } from "react-icons/md";
@@ -11,10 +11,10 @@ import { HiDotsVertical } from "react-icons/hi";
 import Checkintoggle from "../../components/common/checkintoggle";
 import { Divider, Tooltip } from "antd";
 import moment from "moment";
-import LogStep from "../../components/common/commonsteps";
+import LogStep from "../../components/common/steps";
 import { RiTimerLine } from "react-icons/ri";
 import { getUserProfile } from "../../shared/profile";
-import CommonPopup from "../../components/common/commonpopup";
+import CommonPopup from "../../components/common/popup";
 import CommonClock from "../../components/common/commonclock";
 import dayjs from "dayjs";
 const Dashboard = () => {
@@ -169,7 +169,14 @@ const Dashboard = () => {
         setLoading(false); // Stop loading on error
       });
   };
-
+  const legendsData = [
+    { key: "absent", title: "Absent" },
+    { key: "present", title: "Present" },
+    { key: "weekend", title: "Week End" },
+    { key: "weekendholiday", title: " Weekend Holiday" },
+    { key: "mandatory", title: "Mandatory Holiday" },
+    { key: "resricted", title: "Resricted Holiday" },
+  ];
   return (
     <div className="dashboardmain">
       <CommonPopup
@@ -242,10 +249,28 @@ const Dashboard = () => {
           <div className="tablecalendar">
             <Tablecalendar
               handleDateClick={(e) => {
-                showModal(dayjs(e).format("YYYY-MM-DD"));
+                showModal(dayjs(e).format("DD-MM-YYYY"));
               }}
             />
           </div>
+        </div>
+
+        <div className="calendar-legends">
+          {legendsData?.map((e, index) => {
+            return (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginRight: "10px",
+                }}
+              >
+                <div className={`${e.key} color`}></div>
+                <div style={{ marginLeft: "4px" }}>{e?.title}</div>
+              </div>
+            );
+          })}
         </div>
       </section>
       <section className="dashboardright">
@@ -254,7 +279,9 @@ const Dashboard = () => {
             <Usericons />
             <h4>
               {userProfile?.data?.name || "User Name"}{" "}
-              <div className="profilremployee-code">({userProfile?.data?.employee_code})</div>
+              <div className="profilremployee-code">
+                ({userProfile?.data?.employee_code})
+              </div>
             </h4>
             <div className="profile-icons">
               <Tooltip

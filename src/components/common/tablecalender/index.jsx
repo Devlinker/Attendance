@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import "./commoncalender.scss";
 import { getCalender } from "../../../shared/calendar/actions";
 import moment from "moment-timezone";
-import dayjs from "dayjs";
 import enGb from "antd/locale/en_GB";
 
 const Tablecalendar = ({ handleDateClick }) => {
@@ -84,8 +83,9 @@ const Tablecalendar = ({ handleDateClick }) => {
               : dayTypeConfig["absent"],
             content: item.checked_in_time ? (
               <>
-                <div className="calendar-checkinout-ui" >
-                  {formatTimeFromGMT(item.checked_in_time)}-{formatTimeFromGMT(item.checked_out_time)}
+                <div className="calendar-checkinout-ui">
+                  {formatTimeFromGMT(item.checked_in_time)}-
+                  {formatTimeFromGMT(item.checked_out_time)}
                 </div>
                 <div className="calendar-ph"> PH : {item.working_hours}</div>
               </>
