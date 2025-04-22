@@ -9,9 +9,9 @@ import LoginReducer from "./shared/login";
 import UserReducer from "./shared/userlist";
 // import SignupReducer from "./shared/signup";
 import ProfileReducer from "./shared/profile";
-import checkinreducer from "./shared/checkin";
-import calenderreducer from "./shared/calendar";
-import worklogsreducer from "./shared/worklogs";
+import dashboardreducer from "./shared/dashboard";
+// import calenderreducer from "./shared/calendar";
+// import worklogsreducer from "./shared/worklogs";
 
 export default function createReducer(history) {
   const rootReducer = combineReducers({
@@ -20,9 +20,9 @@ export default function createReducer(history) {
     // Signup: SignupReducer,
     user: UserReducer,
     profile: ProfileReducer,
-    checkin: checkinreducer,
-    calender: calenderreducer,
-    worklogs: worklogsreducer,
+    dashboard: dashboardreducer,
+    // calender: calenderreducer,
+    // worklogs: worklogsreducer,
   });
 
   return rootReducer;

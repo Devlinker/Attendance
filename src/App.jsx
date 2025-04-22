@@ -33,6 +33,7 @@ const App = () => {
       <Routes>
         {ROUTES.map(({ path, element, isPrivate }) => (
           <Route
+            key={path}
             path={path}
             element={
               isPrivate ? (

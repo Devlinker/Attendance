@@ -1,25 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Badge, Calendar, ConfigProvider } from "antd";
-import { useDispatch, useSelector } from "react-redux";
 import "./commoncalender.scss";
-import { getCalender } from "../../../shared/calendar/actions";
 import moment from "moment-timezone";
 import enGb from "antd/locale/en_GB";
 
-const Tablecalendar = ({ handleDateClick }) => {
-  const { checkin } = useSelector((state) => state.checkin);
-  const calendardata = useSelector((state) => state.calender);
+const Tablecalendar = ({
+  calendardata,
+  calendarFilter,
+  setCalendarFilter,
+  handleDateClick,
+}) => {
   const response = calendardata?.calender?.data || [];
-  const [calendarFilter, setCalendarFilter] = useState({
-    month: moment().month() + 1,
-    year: moment().year(),
-  });
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getCalender(calendarFilter));
-  }, [checkin, calendarFilter]);
 
   const getListData = (value) => {
     const dateStr = value.format("YYYY-MM-DD");

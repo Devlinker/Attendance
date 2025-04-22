@@ -1,3 +1,5 @@
+@import "/src/styles/main.scss";
+
 .ant-steps-item-title {
   display: flex;
   flex-direction: column;
@@ -6,10 +8,10 @@
   left: 96% !important;
   margin-left: 0px !important;
   width: 1px !important; // adjust line width
-  background: #247BFB !important;
+  background: #f6c24399 !important;
 }
 .vertical-timeline--animate .vertical-timeline-element-icon.bounce-in{
-    background:#247BFB !important;
+    background: $secondaryColor !important;
     animation: none !important;
 }
 .vertical-timeline::before {

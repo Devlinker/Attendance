@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./commonstep.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { worklogs } from "../../../shared/worklogs/actions";
+import { worklogs } from "../../../shared/dashboard/actions";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -9,23 +9,13 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import moment from "moment";
 
-const LogStep = () => {
-  const dispatch = useDispatch();
-  const { logwork } = useSelector((state) => state.worklogs);
-  const { checkin } = useSelector((state) => state.checkin);
-
-  console.log("worklogs", logwork?.data);
-
+const LogStep = ({ logwork }) => {
   const FilteredLogwork = logwork?.data?.map((item) => {
     return {
       ...item,
       subTitle: item?.logged_at,
     };
   });
-
-  useEffect(() => {
-    dispatch(worklogs());
-  }, [checkin]);
 
   return (
     <>

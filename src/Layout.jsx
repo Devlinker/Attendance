@@ -9,7 +9,6 @@ import {
   // UserOutlined,
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
-import Header from "./components/header";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "./shared/login/actions";
@@ -22,7 +21,10 @@ function getItem(label, key, icon, children) {
     label,
   };
 }
-const items = [getItem("Dashboard", "/dashboard", <PieChartOutlined />)];
+const items = [
+  getItem("Dashboard", "/dashboard", <PieChartOutlined />),
+  getItem("Admin", "/admin", <PieChartOutlined />),
+];
 const AppLayout = ({ children }) => {
   const naviagte = useNavigate();
   const { pathname } = useLocation();
@@ -69,7 +71,6 @@ const AppLayout = ({ children }) => {
       </Sider>
 
       <Layout>
-        {/* <Header /> */}
 
         <Content style={{ margin: " 0px" }}>
           {/* <Breadcrumb style={{ margin: "16px 0" }}>

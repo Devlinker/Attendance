@@ -71,7 +71,7 @@
   position: unset !important;
 }
 .ant-badge-status-dot {
-  top: 2px !important;
+  top: 7px !important;
   // display: inline-block;
   width: 27px !important;
   height: 27px !important;
@@ -84,4 +84,5 @@
 .ant-picker-calendar-date-value {
   z-index: 1 !important;
   position: relative !important;
+  padding-top: 5px;
 }

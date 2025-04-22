@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./dashboard.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { checkin } from "../../shared/checkin";
+import { checkin, getCalender, regularize, worklogs } from "../../shared/dashboard";
 import { getLocation } from "../../utils";
 import Tablecalendar from "../../components/common/tablecalender";
 import { FiLogIn, FiLogOut, FiPhone } from "react-icons/fi";
@@ -9,7 +9,7 @@ import Usericons from "../../components/common/Avatar";
 import { MdOutlineEmail, MdOutlineTimer } from "react-icons/md";
 import { HiDotsVertical } from "react-icons/hi";
 import Checkintoggle from "../../components/common/checkintoggle";
-import { Divider, Tooltip } from "antd";
+import { Divider, Form, TimePicker, Tooltip } from "antd";
 import moment from "moment";
 import LogStep from "../../components/common/steps";
 import { RiTimerLine } from "react-icons/ri";
@@ -17,22 +17,60 @@ import { getUserProfile } from "../../shared/profile";
 import CommonPopup from "../../components/common/popup";
 import CommonClock from "../../components/common/commonclock";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 const Dashboard = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const { checkin: checkinData } = useSelector((state) => state.checkin);
+  const { checkin: checkinData } = useSelector((state) => state.dashboard);
+  const { logwork } = useSelector((state) => state.dashboard);
   const { userProfile } = useSelector((state) => state.profile);
   let updatedProfile = userProfile?.data;
   let checkinType = updatedProfile?.punch_type;
   const [checked, setChecked] = useState();
   const [workingTime, setWorkingTime] = useState({ hours: 0, minutes: 0 });
+  const [regularizeTimeRange, setRegularizetimerange] = useState({
+    checked_in_time: null,
+    checked_out_time: null,
+  });
+
+  const calendardata = useSelector((state) => state.dashboard);
+  const [calendarFilter, setCalendarFilter] = useState({
+    month: moment().month() + 1,
+    year: moment().year(),
+  });
+  useEffect(() => {
+    dispatch(getCalender(calendarFilter));
+  }, [checkinData, calendarFilter]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = (value) => {
     setIsModalOpen(value);
+    let todayTime = calendardata?.calender?.data?.find(
+      (item) =>
+        moment(item.calendar_date, "YYYY-MM-DD").format("DD-MM-YYYY") == value
+    );
+setRegularizetimerange({
+  checked_in_time: todayTime?.checked_in_time
+    ? dayjs.utc(todayTime.checked_in_time, "HH:mm:ss").tz("Asia/Kolkata")
+    : null,
+  checked_out_time: todayTime?.checked_out_time
+    ? dayjs.utc(todayTime.checked_out_time, "HH:mm:ss").tz("Asia/Kolkata")
+    : null,
+});
   };
   const handleOk = () => {
-    setIsModalOpen(false);
+    // setIsModalOpen(false);
+    dispatch(
+      regularize({
+        checked_in_time: regularizeTimeRange.checked_in_time,
+        checked_out_time: regularizeTimeRange.checked_out_time,
+        attendance_date: isModalOpen,
+      })
+    );
   };
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -130,19 +168,18 @@ const Dashboard = () => {
       setWorkingTime({ hours, minutes });
     };
 
-    updateWorkingTime(); // Initial call
+    updateWorkingTime();
 
     const intervalId = setInterval(() => {
       updateWorkingTime();
-    }, 60000); // Update every minute
+    }, 60000);
 
-    return () => clearInterval(intervalId); // Cleanup
+    return () => clearInterval(intervalId);
   }, [checkinTime, checkinType]);
-
-  console.log(workingTime, "workingTime");
 
   useEffect(() => {
     dispatch(getUserProfile());
+    dispatch(worklogs());
   }, [checkinData]);
 
   const handleCheckin = (val) => {
@@ -162,11 +199,10 @@ const Dashboard = () => {
               setChecked(val);
             }
           )
-        ).finally(() => setLoading(false)); // Stop loading after dispatch
+        ).finally(() => setLoading(false));
       })
       .catch((error) => {
-        console.log(error);
-        setLoading(false); // Stop loading on error
+        setLoading(false);
       });
   };
   const legendsData = [
@@ -177,6 +213,13 @@ const Dashboard = () => {
     { key: "mandatory", title: "Mandatory Holiday" },
     { key: "resricted", title: "Resricted Holiday" },
   ];
+  const RegularizeModelChange = (key, time, timeString) => {
+    console.log(key, time, "test");
+    setRegularizetimerange((prev) => ({
+      ...prev,
+      [key]: time,
+    }));
+  };
   return (
     <div className="dashboardmain">
       <CommonPopup
@@ -185,7 +228,44 @@ const Dashboard = () => {
         okText={"Submit"}
         handleOk={handleOk}
         handleCancel={handleCancel}
-        children={<div>{isModalOpen}</div>}
+        children={
+          <div>
+            {isModalOpen}
+            <Form layout="vertical">
+              <Form.Item label="Check-in Time" style={{ width: "100%" }}>
+                <TimePicker
+                  style={{ width: "100%" }}
+                  // use12Hours
+                  value={
+                    regularizeTimeRange.checked_in_time
+                      ? dayjs(regularizeTimeRange.checked_in_time)
+                      : regularizeTimeRange.checked_in_time
+                  }
+                  format="h:mm a"
+                  onChange={(time, timeString) =>
+                    RegularizeModelChange("checked_in_time", time, timeString)
+                  }
+                />
+              </Form.Item>
+
+              <Form.Item label="Check-out Time" style={{ width: "100%" }}>
+                <TimePicker
+                  style={{ width: "100%" }}
+                  // use12Hours
+                  value={
+                    regularizeTimeRange.checked_out_time
+                      ? dayjs(regularizeTimeRange.checked_out_time)
+                      : regularizeTimeRange.checked_out_time
+                  }
+                  format="h:mm a"
+                  onChange={(time, timeString) =>
+                    RegularizeModelChange("checked_out_time", time, timeString)
+                  }
+                />
+              </Form.Item>
+            </Form>
+          </div>
+        }
       />
       <section className="dashboardleft">
         <section className="worklogcontainer">
@@ -248,6 +328,9 @@ const Dashboard = () => {
         <div className="checkinclock page-center">
           <div className="tablecalendar">
             <Tablecalendar
+              calendarFilter={calendarFilter}
+              setCalendarFilter={setCalendarFilter}
+              calendardata={calendardata}
               handleDateClick={(e) => {
                 showModal(dayjs(e).format("DD-MM-YYYY"));
               }}
@@ -259,6 +342,7 @@ const Dashboard = () => {
           {legendsData?.map((e, index) => {
             return (
               <div
+                key={index}
                 style={{
                   display: "flex",
                   flexDirection: "row",
@@ -305,30 +389,10 @@ const Dashboard = () => {
         </div>
         <CommonPopup />
         <div className="worklog-container">
-          <LogStep />
+          <LogStep logwork={logwork} />
         </div>
       </section>
     </div>
   );
 };
 export default Dashboard;
-{
-  /* <CustomButton
-              disabled={
-                loading ||
-                checkinType === "checked_in" ||
-                checkinType === "checked_out"
-              }
-              buttonTxt={loading ? "Checking In..." : "Check In"}
-              width={"130px"}
-              onClick={handleCheckin}
-            />
-            <CustomButton
-              disabled={
-                loading || checkinType === "checked_out" || checkinType == null
-              }
-              buttonTxt={loading ? "Checking Out..." : "Check Out"}
-              width={"130px"}
-              onClick={handleCheckin}
-            /> */
-}

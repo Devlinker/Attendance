@@ -7,8 +7,6 @@ import storageSession from "redux-persist/lib/storage/session";
 import createReducer from "./reducers";
 import { createBrowserHistory } from "history";
 
-/* eslint-disable */
-
 const history = createBrowserHistory();
 
 const persistConfig = {

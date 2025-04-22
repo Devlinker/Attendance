@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
-import PopupTime from "../popuptime";
 const CommonPopup = ({
   isModalOpen,
   title,
@@ -19,7 +18,6 @@ const CommonPopup = ({
         onCancel={handleCancel}
       >
         {children}
-        <PopupTime />
       </Modal>
     </>
   );

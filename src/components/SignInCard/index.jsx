@@ -1,8 +1,9 @@
 import React, { use, useEffect, useState } from "react";
 import "./signincard.scss";
-import CommonInput from "../../components/common/input/commonInput";
 import Commoncheckbox from "../../components/common/checkbox/commoncheckbox";
 import CustomButton from "../common/custombutton";
+import CommonInput from "../common/input";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../shared/login/actions";
