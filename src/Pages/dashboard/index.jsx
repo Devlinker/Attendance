@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./dashboard.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { checkin, getCalender, regularize, worklogs } from "../../shared/dashboard";
+import {
+  checkin,
+  getCalender,
+  regularize,
+  worklogs,
+} from "../../shared/dashboard";
 import { getLocation } from "../../utils";
 import Tablecalendar from "../../components/common/tablecalender";
 import { FiLogIn, FiLogOut, FiPhone } from "react-icons/fi";
@@ -19,6 +24,7 @@ import CommonClock from "../../components/common/commonclock";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import TextAreainput from "../../components/common/textarea";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -35,6 +41,7 @@ const Dashboard = () => {
   const [regularizeTimeRange, setRegularizetimerange] = useState({
     checked_in_time: null,
     checked_out_time: null,
+    regularize_reason: "",
   });
 
   const calendardata = useSelector((state) => state.dashboard);
@@ -53,14 +60,14 @@ const Dashboard = () => {
       (item) =>
         moment(item.calendar_date, "YYYY-MM-DD").format("DD-MM-YYYY") == value
     );
-setRegularizetimerange({
-  checked_in_time: todayTime?.checked_in_time
-    ? dayjs.utc(todayTime.checked_in_time, "HH:mm:ss").tz("Asia/Kolkata")
-    : null,
-  checked_out_time: todayTime?.checked_out_time
-    ? dayjs.utc(todayTime.checked_out_time, "HH:mm:ss").tz("Asia/Kolkata")
-    : null,
-});
+    setRegularizetimerange({
+      checked_in_time: todayTime?.checked_in_time
+        ? dayjs.utc(todayTime.checked_in_time, "HH:mm:ss").tz("Asia/Kolkata")
+        : null,
+      checked_out_time: todayTime?.checked_out_time
+        ? dayjs.utc(todayTime.checked_out_time, "HH:mm:ss").tz("Asia/Kolkata")
+        : null,
+    });
   };
   const handleOk = () => {
     // setIsModalOpen(false);
@@ -69,6 +76,7 @@ setRegularizetimerange({
         checked_in_time: regularizeTimeRange.checked_in_time,
         checked_out_time: regularizeTimeRange.checked_out_time,
         attendance_date: isModalOpen,
+        regularize_reason: regularizeTimeRange.regularize_reason,
       })
     );
   };
@@ -223,14 +231,13 @@ setRegularizetimerange({
   return (
     <div className="dashboardmain">
       <CommonPopup
-        title={"Regularize"}
+        title={<div>Regularize For {isModalOpen}</div>}
         isModalOpen={isModalOpen}
         okText={"Submit"}
         handleOk={handleOk}
         handleCancel={handleCancel}
         children={
           <div>
-            {isModalOpen}
             <Form layout="vertical">
               <Form.Item label="Check-in Time" style={{ width: "100%" }}>
                 <TimePicker
@@ -263,6 +270,12 @@ setRegularizetimerange({
                   }
                 />
               </Form.Item>
+              <TextAreainput
+                value={regularizeTimeRange.regularize_reason}
+                onChange={(val) =>
+                  RegularizeModelChange("regularize_reason", val.target.value)
+                }
+              />
             </Form>
           </div>
         }

@@ -7,6 +7,7 @@ import CommonInput from "../common/input";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../shared/login/actions";
+import { dashboardRoute } from "../../utils/routeContants";
 // import Logo from '../../img/logoipsum.svg';
 
 const SignInCard = () => {
@@ -15,7 +16,7 @@ const SignInCard = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/dashboard", { replace: true });
+      navigate(dashboardRoute, { replace: true });
     }
   }, [isAuthenticated]);
 
@@ -96,8 +97,8 @@ const SignInCard = () => {
             disabled={false}
           />
           {/* <span className="signup-text"> */}
-            {/* New on our platform?{" "} */}
-            {/* <span onClick={() => navigate("/signup")} className="createaccount">Create an account </span> */}
+          {/* New on our platform?{" "} */}
+          {/* <span onClick={() => navigate("/signup")} className="createaccount">Create an account </span> */}
           {/* </span> */}
         </form>
       </div>

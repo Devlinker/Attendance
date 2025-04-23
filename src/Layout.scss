@@ -11,9 +11,20 @@
   .ant-layout-sider-trigger {
     background-color: $sidemenubuttonBg !important;
   }
+  .ant-menu-item {
+    color: $sidemenubuttonColor;
+
+    &:hover {
+      color: $sidemenubuttonColor !important;
+    }
+  }
   .ant-menu-item-selected {
     background-color: $sidemenubuttonBg !important;
     color: $sidemenubuttonColor;
+
+    &:hover {
+      color: $sidemenubuttonColor !important;
+    }
   }
   .anticon {
     color: $sidemenubuttonColor;
@@ -21,7 +32,7 @@
   .ant-menu {
     padding-top: 11px;
   }
-  .ant-layout-sider-children{
+  .ant-layout-sider-children {
     border-right: 1px solid #ccc;
   }
   .ant-menu-title-content {

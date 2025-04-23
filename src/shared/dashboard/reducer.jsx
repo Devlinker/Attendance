@@ -13,9 +13,8 @@ import {
   CALENDAR_SUCCESS,
   REGULARIZE_SUCCESS,
   REGULARIZE_FAILURE,
+  REGULARIZE,
 } from "../ActionTypes";
-import { REGULARIZE } from "../ApiEndPoints";
-import { regularize } from "./actions";
 
 const INIT_STATE = {
   error: null,
@@ -27,7 +26,7 @@ const INIT_STATE = {
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
     case CHECK_IN:
-      return INIT_STATE;
+      return state;
     case CHECK_IN_SUCCESS:
       return {
         ...state,
@@ -44,7 +43,7 @@ export default (state = INIT_STATE, action) => {
       };
 
     case CHECK_OUT:
-      return INIT_STATE;
+      return state;
     case CHECK_OUT_SUCCESS:
       return {
         ...state,
@@ -61,7 +60,7 @@ export default (state = INIT_STATE, action) => {
       };
 
     case LOGOUT:
-      return INIT_STATE;
+      return state;
 
     case CALENDAR_SUCCESS:
       return {
@@ -77,7 +76,7 @@ export default (state = INIT_STATE, action) => {
       };
 
     case WORK_LOGS:
-      return INIT_STATE;
+      return state;
 
     case WORK_LOGS_SUCCESS:
       return {
@@ -93,7 +92,7 @@ export default (state = INIT_STATE, action) => {
       };
 
     case REGULARIZE:
-      return INIT_STATE;
+      return state;
 
     case REGULARIZE_SUCCESS:
       return {

@@ -1,28 +1,22 @@
-/**
- * Combine all reducers in this file and export the combined reducers.
- */
-
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
 
 import LoginReducer from "./shared/login";
-import UserReducer from "./shared/userlist";
+// import UserReducer from "./shared/userlist";
 // import SignupReducer from "./shared/signup";
 import ProfileReducer from "./shared/profile";
 import dashboardreducer from "./shared/dashboard";
-// import calenderreducer from "./shared/calendar";
-// import worklogsreducer from "./shared/worklogs";
+import employeereducer from "./shared/employee";
 
 export default function createReducer(history) {
   const rootReducer = combineReducers({
     router: connectRouter(history),
     login: LoginReducer,
     // Signup: SignupReducer,
-    user: UserReducer,
+    // user: UserReducer,
     profile: ProfileReducer,
     dashboard: dashboardreducer,
-    // calender: calenderreducer,
-    // worklogs: worklogsreducer,
+    employee: employeereducer,
   });
 
   return rootReducer;

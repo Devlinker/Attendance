@@ -8,4 +8,5 @@ export const CHECKIN = `${BASE_URL}/staff-attendance/check-in/`;
 export const CALENDAR = `${BASE_URL}/staff-attendance/calendar/`;
 export const WORKLOGS = `${BASE_URL}/user-log/list/`;
 export const REGULARIZE = `${BASE_URL}/regularize/regularize_post/`;
-
+export const EMPLOYEELIST = `${BASE_URL}/employee/list/`;
+export const ADDUSER = `${BASE_URL}/employee/create/`;

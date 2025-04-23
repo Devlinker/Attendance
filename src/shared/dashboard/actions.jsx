@@ -96,8 +96,7 @@ export function getCalender(params) {
           payload: response.data,
         });
       }
-    } catch (err) {
-    }
+    } catch (err) {}
   };
 }
 
@@ -135,22 +134,25 @@ export function regularize(payload) {
       type: REGULARIZE,
     });
     try {
-      const response = await axiosPrivate.post(API_END_POINT.REGULARIZE, payload);
+      const response = await axiosPrivate.post(
+        API_END_POINT.REGULARIZE,
+        payload
+      );
       if (response.status === 200) {
         dispatch({
           type: REGULARIZE_SUCCESS,
           payload: response.data,
         });
-      } else if (response.status === 400) {
+      } else if (response.status === 400 || response.status === 500) {
         dispatch({
           type: REGULARIZE_FAILURE,
-          payload: response.data,
+          payload: response?.data || "",
         });
       }
     } catch (err) {
       dispatch({
         type: REGULARIZE_FAILURE,
-        payload: err.response.data,
+        payload: err?.response?.data || "API Error",
       });
     }
   };

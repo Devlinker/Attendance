@@ -5,13 +5,14 @@ import {
   // DesktopOutlined,
   // FileOutlined,
   PieChartOutlined,
-  // TeamOutlined,
+  TeamOutlined,
   // UserOutlined,
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "./shared/login/actions";
+import { dashboardRoute } from "./utils/routeContants";
 const { Content, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -22,16 +23,12 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("Dashboard", "/dashboard", <PieChartOutlined />),
-  getItem("Admin", "/admin", <PieChartOutlined />),
+  getItem("Dashboard", dashboardRoute, <PieChartOutlined />),
+  getItem("Employee", "/employee", <TeamOutlined />),
 ];
 const AppLayout = ({ children }) => {
   const naviagte = useNavigate();
   const { pathname } = useLocation();
-  const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
 
   const dispatch = useDispatch();
 
@@ -40,11 +37,7 @@ const AppLayout = ({ children }) => {
   };
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider
-      // collapsible
-      // collapsed={collapsed}
-      // onCollapse={(value) => setCollapsed(value)}
-      >
+      <Sider>
         <div className="demo-logo-vertical" />
         <div className="logo">
           <img src="https://cartoonmango.com/cm-logo.gif" alt="" />
@@ -53,6 +46,9 @@ const AppLayout = ({ children }) => {
           theme="dark"
           defaultSelectedKeys={["1"]}
           selectedKeys={[pathname]}
+          onClick={(e) => {
+            naviagte(e.key);
+          }}
           style={{
             minHeight: "calc(100vh - 155px)",
             padding: "15px 15px 15px 15px",
@@ -71,7 +67,6 @@ const AppLayout = ({ children }) => {
       </Sider>
 
       <Layout>
-
         <Content style={{ margin: " 0px" }}>
           {/* <Breadcrumb style={{ margin: "16px 0" }}>
            <Breadcrumb.Item>User</Breadcrumb.Item>
@@ -79,9 +74,6 @@ const AppLayout = ({ children }) => {
           </Breadcrumb> */}
           <div className="main-layout-container">{children}</div>
         </Content>
-        {/* <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer> */}
       </Layout>
     </Layout>
   );
