@@ -11,7 +11,6 @@ const Employee = () => {
   const navigate = useNavigate();
 
   const employeeData = useSelector((state) => state.employee);
-  console.log(employeeData?.employeelist?.data, "test");
 
   const columns = [
     {
@@ -49,7 +48,6 @@ const Employee = () => {
             width={"70px"}
             buttonTxt={"Add"}
             onClick={() => navigate("/employee/add-user")}
-            // className={}
           />
         </div>
         <CustomTable

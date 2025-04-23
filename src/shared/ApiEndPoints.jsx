@@ -1,4 +1,5 @@
 export const BASE_URL = "http://3.110.35.97/api/v1";
+// export const BASE_URL = "https://spot.cartoonmango.com/api/v1";
 
 export const LOGIN = `${BASE_URL}/admin/login/`;
 export const USERLIST = `${BASE_URL}/user/list/`;
@@ -9,4 +10,6 @@ export const CALENDAR = `${BASE_URL}/staff-attendance/calendar/`;
 export const WORKLOGS = `${BASE_URL}/user-log/list/`;
 export const REGULARIZE = `${BASE_URL}/regularize/regularize_post/`;
 export const EMPLOYEELIST = `${BASE_URL}/employee/list/`;
-export const ADDUSER = `${BASE_URL}/employee/create/`;
+export const ADDEMPLOYEE = `${BASE_URL}/employee/create/`;
+export const PROJECTS = `${BASE_URL}/projects/list/`;
+export const COMPANY = `${BASE_URL}/company/list/`;

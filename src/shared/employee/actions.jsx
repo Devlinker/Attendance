@@ -1,7 +1,7 @@
 import {
-  ADD_USER,
-  ADD_USER_FAILURE,
-  ADD_USER_SUCCESS,
+  ADD_EMPLOYEE,
+  ADD_EMPLOYEE_FAILURE,
+  ADD_EMPLOYEE_SUCCESS,
   EMPLOYEE_LIST,
   EMPLOYEE_LIST_FAILURE,
   EMPLOYEE_LIST_SUCCESS,
@@ -34,28 +34,31 @@ export function employeelist(params) {
   };
 }
 
-export function adduser(payload) {
+export function addemployee(payload, cb) {
   return async (dispatch) => {
     dispatch({
-      type: ADD_USER,
+      type: ADD_EMPLOYEE,
     });
     try {
-      const response = await axiosPrivate.post(API_END_POINT.CHECKIN, payload);
+      const response = await axiosPrivate.post(API_END_POINT.ADDEMPLOYEE,
+        payload
+      );
 
       if (response.status === 200) {
         dispatch({
-          type: ADD_USER_SUCCESS,
+          type: ADD_EMPLOYEE_SUCCESS,
           payload: response.data,
         });
+        cb && cb();
       } else if (response.status === 400) {
         dispatch({
-          type: ADD_USER_FAILURE,
+          type: ADD_EMPLOYEE_FAILURE,
           payload: response.data,
         });
       }
     } catch (err) {
       dispatch({
-        type: ADD_USER_FAILURE,
+        type: ADD_EMPLOYEE_FAILURE,
         payload: err.response.data,
       });
     }

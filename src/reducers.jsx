@@ -7,6 +7,8 @@ import LoginReducer from "./shared/login";
 import ProfileReducer from "./shared/profile";
 import dashboardreducer from "./shared/dashboard";
 import employeereducer from "./shared/employee";
+import projectsreducer from "./shared/projects"
+import companyreducer from "./shared/company";
 
 export default function createReducer(history) {
   const rootReducer = combineReducers({
@@ -17,6 +19,8 @@ export default function createReducer(history) {
     profile: ProfileReducer,
     dashboard: dashboardreducer,
     employee: employeereducer,
+    projects: projectsreducer,
+    company: companyreducer,
   });
 
   return rootReducer;

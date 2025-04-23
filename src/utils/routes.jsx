@@ -2,9 +2,9 @@ import { Navigate } from "react-router-dom";
 import Signin from "../Pages/signin";
 // import Signup from "../Pages/signup"
 import Dashboard from "../Pages/dashboard";
-import AddUser from "../Pages/employee/addUser";
 import { dashboardRoute, rootRoute } from "./routeContants";
 import Employee from "../Pages/employee";
+import AddEmployee from "../Pages/employee/addemployee";
 
 export const ROUTES = [
   {
@@ -27,7 +27,7 @@ export const ROUTES = [
   },
   {
     path: "/employee/add-user",
-    element: <AddUser />,
+    element: <AddEmployee />,
     isPrivate: true,
   },
   {

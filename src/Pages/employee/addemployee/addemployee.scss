@@ -1,0 +1,14 @@
+.add-employee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    padding: 20px 0px;
+  }
+  .add-employee-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 50%;
+  }
+}

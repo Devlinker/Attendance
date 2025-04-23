@@ -22,6 +22,7 @@ const INIT_STATE = {
   checkin: {},
   calender: [],
   logwork: {},
+  regularize: {},
 };
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
