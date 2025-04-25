@@ -40,7 +40,8 @@ export function addemployee(payload, cb) {
       type: ADD_EMPLOYEE,
     });
     try {
-      const response = await axiosPrivate.post(API_END_POINT.ADDEMPLOYEE,
+      const response = await axiosPrivate.post(
+        API_END_POINT.ADDEMPLOYEE,
         payload
       );
 
