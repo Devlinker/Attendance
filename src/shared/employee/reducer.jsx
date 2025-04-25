@@ -2,35 +2,42 @@ import {
   ADD_EMPLOYEE,
   ADD_EMPLOYEE_FAILURE,
   ADD_EMPLOYEE_SUCCESS,
+  EDIT_EMPLOYEE,
+  EDIT_EMPLOYEE_FAILURE,
+  EDIT_EMPLOYEE_SUCCESS,
   EMPLOYEE_LIST,
   EMPLOYEE_LIST_FAILURE,
   EMPLOYEE_LIST_SUCCESS,
-
+  GET_EMPLOYEE_DETAILS,
+  GET_EMPLOYEE_DETAILS_FAILURE,
+  GET_EMPLOYEE_DETAILS_SUCCESS,
 } from "../ActionTypes";
 
 const INIT_STATE = {
   error: null,
-  isAuthenticated: null,
+  employeeListLoader: false,
   employeelist: {},
   addemployee: {},
+  editemployee: {},
+  getemployeedetails: {},
 };
 
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
     case EMPLOYEE_LIST:
-      return INIT_STATE;
+      return { ...state, employeeListLoader: true };
     case EMPLOYEE_LIST_SUCCESS:
       return {
         ...state,
-        isAuthenticated: true,
+        employeeListLoader: false,
         employeelist: action.payload,
       };
 
     case EMPLOYEE_LIST_FAILURE:
       return {
         ...state,
+        employeeListLoader: false,
         error: action.payload,
-        isAuthenticated: false,
         employeelist: {},
       };
 
@@ -39,7 +46,6 @@ export default (state = INIT_STATE, action) => {
     case ADD_EMPLOYEE_SUCCESS:
       return {
         ...state,
-        isAuthenticated: true,
         addemployee: action.payload,
       };
 
@@ -47,13 +53,40 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         error: action.payload,
-        isAuthenticated: false,
         addemployee: {},
+      };
+
+    case EDIT_EMPLOYEE:
+      return state;
+    case EDIT_EMPLOYEE_SUCCESS:
+      return {
+        ...state,
+        editemployee: action.payload,
+      };
+
+    case EDIT_EMPLOYEE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        editemployee: {},
+      };
+
+    case GET_EMPLOYEE_DETAILS:
+      return state;
+    case GET_EMPLOYEE_DETAILS_SUCCESS:
+      return {
+        ...state,
+        getemployeedetails: action.payload,
+      };
+
+    case GET_EMPLOYEE_DETAILS_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        getemployeedetails: {},
       };
 
     default:
       return state;
   }
-
 };
-

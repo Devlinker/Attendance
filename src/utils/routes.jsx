@@ -26,7 +26,7 @@ export const ROUTES = [
     isPrivate: true,
   },
   {
-    path: "/employee/add-user",
+    path: "/employee/add-user/:id?",
     element: <AddEmployee />,
     isPrivate: true,
   },

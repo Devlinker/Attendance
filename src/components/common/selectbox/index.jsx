@@ -4,7 +4,9 @@ import "./selectbox.scss";
 const SelectBox = ({
   label,
   error,
+  errorText,
   options,
+  value,
   onChange,
   placeholder,
   width = "100%",
@@ -16,6 +18,7 @@ const SelectBox = ({
       style={{ width, height }}
       placeholder={placeholder}
       label={label}
+      value={value}
       onChange={onChange}
       options={options}
     />
@@ -38,6 +41,7 @@ const SelectBox = ({
       options={[{ value: "lucy", label: "Lucy" }]}
       placeholder="select it"
     /> */}
+    {error && errorText && <p className="error">{errorText}</p>}
   </div>
 );
 export default SelectBox;

@@ -1,8 +1,8 @@
 import React from "react";
-import { Table } from "antd";
-import "./CustomTable.scss"; 
+import { Spin, Table } from "antd";
+import "./CustomTable.scss";
 
-const  CustomTable =({
+const CustomTable = ({
   columns,
   data,
   pagination,
@@ -24,5 +24,5 @@ const  CustomTable =({
       />
     </>
   );
-}
+};
 export default CustomTable;

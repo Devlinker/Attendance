@@ -71,11 +71,31 @@ const Dashboard = () => {
   };
   const handleOk = () => {
     // setIsModalOpen(false);
+    // dispatch(
+    //   regularize({
+    //     checked_in_time: regularizeTimeRange.checked_in_time,
+    //     checked_out_time: regularizeTimeRange.checked_out_time,
+    //     attendance_date: isModalOpen,
+    //     regularize_reason: regularizeTimeRange.regularize_reason,
+    //   })
+    // );
+    // Convert to desired format using dayjs
+    const formattedCheckIn = dayjs(regularizeTimeRange.checked_in_time, [
+      // "hh.mmA",
+      "hh:mm ",
+    ]).format("HH:mma");
+    const formattedCheckOut = dayjs(regularizeTimeRange.checked_out_time, [
+      // "hh.mmA",
+      "hh:mm ",
+    ]).format("HH:mma");
+    console.log(isModalOpen);
+
+    // Dispatch to Redux
     dispatch(
       regularize({
-        checked_in_time: regularizeTimeRange.checked_in_time,
-        checked_out_time: regularizeTimeRange.checked_out_time,
-        attendance_date: isModalOpen,
+        checked_in_time: formattedCheckIn,
+        checked_out_time: formattedCheckOut,
+        attendance_date: moment(isModalOpen, "DD-MM-YYYY").format("YYYY-MM-DD"), // assuming this is the date
         regularize_reason: regularizeTimeRange.regularize_reason,
       })
     );
@@ -222,7 +242,6 @@ const Dashboard = () => {
     { key: "resricted", title: "Resricted Holiday" },
   ];
   const RegularizeModelChange = (key, time, timeString) => {
-    console.log(key, time, "test");
     setRegularizetimerange((prev) => ({
       ...prev,
       [key]: time,
@@ -315,6 +334,7 @@ const Dashboard = () => {
                   handleChange={(val) => {
                     handleCheckin(val.target.checked);
                   }}
+                  loading={loading}
                 />
               )}
               <div

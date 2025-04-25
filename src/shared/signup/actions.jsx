@@ -9,7 +9,6 @@
 //     });
 //     try {
 //       const response = await axiosPublic.post(API_END_POINT.SIGNUP, formData);
-//       console.log(response, "response pass");
 
 //       if (response.status === 200) {
 //         dispatch({
@@ -22,7 +21,6 @@
 //           type: SIGNUP_ERROR,
 //           payload: response.data,
 //         });
-//         console.log(response, "response failed");
 //       }
 //     } catch (err) {
 //       alert(err?.response?.data?.message);

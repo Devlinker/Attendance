@@ -1,5 +1,5 @@
 import React from "react";
-import "./button.scss"
+import "./button.scss";
 import { Button, Flex } from "antd";
 const CustomButton = ({
   onClick,
@@ -9,16 +9,23 @@ const CustomButton = ({
   type = "primary",
   buttonTxt,
   disabled,
+  rightIcon,
 }) => (
   <div
     className={`${className} ${type}`}
     style={{
       width: width || "100%",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
     }}
   >
-    <Button disabled={disabled} type={type} block onClick={onClick}>
-      {buttonTxt || children}
-    </Button>
+    {buttonTxt || children ? (
+      <Button disabled={disabled} type={type} block onClick={onClick}>
+        {buttonTxt || children}
+      </Button>
+    ) : null}
+    {rightIcon && rightIcon}
   </div>
 );
 export default CustomButton;

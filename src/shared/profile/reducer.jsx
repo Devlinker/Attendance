@@ -22,7 +22,9 @@ export default (state = INIT_STATE, action) => {
           error: action.payload,
           userProfile: {},
         };
-  
+
+        // case CHECK_LOCATION_VALID:
+        //   return state;
   
       default:
         return state;

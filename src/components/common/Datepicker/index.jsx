@@ -4,6 +4,7 @@ import "./datepicker.scss";
 const Datepicker = ({
   onChange,
   label,
+  value,
   error,
   width = "100%",
   height = "40px",
@@ -17,6 +18,7 @@ const Datepicker = ({
         type: "mask",
       }}
       onChange={onChange}
+      value={value}
     />
     {error && <p className="errorDate">Date is Required</p>}
   </div>

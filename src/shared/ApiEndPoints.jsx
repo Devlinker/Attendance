@@ -11,5 +11,10 @@ export const WORKLOGS = `${BASE_URL}/user-log/list/`;
 export const REGULARIZE = `${BASE_URL}/regularize/regularize_post/`;
 export const EMPLOYEELIST = `${BASE_URL}/employee/list/`;
 export const ADDEMPLOYEE = `${BASE_URL}/employee/create/`;
+export const GETEMPLOYEEDETAILS = `${BASE_URL}/employee/detail/`;
+export const EDITEMPLOYEE = `${BASE_URL}/employee/update/`;
+export const CHANGEPASSWORD = `${BASE_URL}/employee/change-password/`;
+export const CHANGESTATUS = `${BASE_URL}/employee/change-employee-status/`;
+
 export const PROJECTS = `${BASE_URL}/projects/list/`;
 export const COMPANY = `${BASE_URL}/company/list/`;

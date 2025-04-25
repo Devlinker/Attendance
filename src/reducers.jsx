@@ -9,6 +9,8 @@ import dashboardreducer from "./shared/dashboard";
 import employeereducer from "./shared/employee";
 import projectsreducer from "./shared/projects"
 import companyreducer from "./shared/company";
+import passwordreducer from "./shared/changepassword";
+// import statusreducer from "./shared/changestatus";
 
 export default function createReducer(history) {
   const rootReducer = combineReducers({
@@ -21,6 +23,8 @@ export default function createReducer(history) {
     employee: employeereducer,
     projects: projectsreducer,
     company: companyreducer,
+    password: passwordreducer,
+    // status: statusreducer,
   });
 
   return rootReducer;

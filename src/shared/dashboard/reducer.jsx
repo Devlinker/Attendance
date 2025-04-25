@@ -18,6 +18,7 @@ import {
 
 const INIT_STATE = {
   error: null,
+  checkinloader: false,
   isAuthenticated: null,
   checkin: {},
   calender: [],
@@ -27,10 +28,11 @@ const INIT_STATE = {
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
     case CHECK_IN:
-      return state;
+      return {...state, checkinloader: true};
     case CHECK_IN_SUCCESS:
       return {
         ...state,
+        checkinloader: false,
         isAuthenticated: true,
         checkin: action.payload,
       };
@@ -38,6 +40,7 @@ export default (state = INIT_STATE, action) => {
     case CHECK_IN_FAILURE:
       return {
         ...state,
+        checkinloader: false,
         error: action.payload,
         isAuthenticated: false,
         checkin: {},

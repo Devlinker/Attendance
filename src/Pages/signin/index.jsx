@@ -7,7 +7,6 @@ import { getTutor } from "../../shared/userlist";
 
 const Signin = () => {
   // const data = useSelector((state) => {
-  //   console.log(state);
   // });
   const dispatch = useDispatch();
 
