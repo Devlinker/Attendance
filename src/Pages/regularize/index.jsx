@@ -1,10 +1,8 @@
-
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CommonPopup from "../../components/common/popup";
 import TextAreainput from "../../components/common/textarea";
-import { Button, message } from "antd";
+import { Button, message, Spin } from "antd";
 import {
   fetchRegularizeList,
   submitRegularize,
@@ -13,9 +11,11 @@ import CustomTable from "../../components/common/customtable";
 
 const RegularizeList = () => {
   const dispatch = useDispatch();
-  const { regularizeList, pagination } = useSelector(
+  const { regularizeList, pagination, loading } = useSelector(
     (state) => state?.regularize
   );
+  const { userProfile } = useSelector((state) => state.profile);
+  const updatedProfile = userProfile?.data;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRecord, setSelectedRecord] = useState(null);
@@ -58,7 +58,7 @@ const RegularizeList = () => {
   const handleReject = (record) => {
     setSelectedRecord(record);
     setActionType("reject");
-    setIsModalOpen(true); // Open modal only for rejection
+    setIsModalOpen(true);
   };
 
   const handleOk = () => {
@@ -95,6 +95,11 @@ const RegularizeList = () => {
     setActionType(null);
   };
 
+  const toCamelCase = (str) => {
+    if (!str) return "";
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  };
+
   const columns = [
     {
       title: "Serial No.",
@@ -120,6 +125,7 @@ const RegularizeList = () => {
       title: "Status",
       dataIndex: "status",
       key: "status",
+      render: (status) => toCamelCase(status),
     },
     {
       title: "Action",
@@ -132,23 +138,32 @@ const RegularizeList = () => {
           record?.rejected_at;
 
         if (isFinalized) {
-          return <span style={{ color: "#888" }}>Already {record.status}</span>;
+          return (
+            <span style={{ color: "#888" }}>{toCamelCase(record.status)}</span>
+          );
         }
 
-        return (
-          <>
-            <Button
-              type="primary"
-              onClick={() => handleApprove(record)}
-              style={{ marginRight: 8 }}
-            >
-              Approve
-            </Button>
-            <Button danger onClick={() => handleReject(record)}>
-              Reject
-            </Button>
-          </>
-        );
+        // Only show action buttons if user_type is admin
+        if (updatedProfile?.user_type === "admin") {
+          return (
+            <>
+              <Button
+                type="primary"
+                onClick={() => handleApprove(record)}
+                style={{ marginRight: 8 }}
+              >
+                Approve
+              </Button>
+              <Button danger onClick={() => handleReject(record)}>
+                Reject
+              </Button>
+            </>
+          );
+        } else {
+          return (
+            <span style={{ color: "#888" }}>{toCamelCase(record.status)}</span>
+          );
+        }
       },
     },
   ];
@@ -157,20 +172,24 @@ const RegularizeList = () => {
     <>
       <div className="users-container">
         <h2>Regularize Requests</h2>
-        <CustomTable
-          columns={columns}
-          data={regularizeList}
-          pagination={{
-            current: pagination?.current || currentPage,
-            pageSize: pagination?.pageSize || pageSize,
-            total: pagination?.total_count || 0,
-            onChange: handlePageChange,
-            showSizeChanger: true,
-          }}
-        />
+
+        {/* Spin wraps the table */}
+        <Spin spinning={loading}>
+          <CustomTable
+            columns={columns}
+            data={regularizeList}
+            pagination={{
+              current: currentPage,
+              pageSize: pageSize,
+              total: pagination?.total || 0,
+              onChange: handlePageChange,
+              showSizeChanger: true,
+            }}
+          />
+        </Spin>
       </div>
 
-      {/* Show popup only for rejection */}
+      {/* Popup for rejection */}
       {actionType === "reject" && (
         <CommonPopup
           title={
