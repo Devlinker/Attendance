@@ -13,6 +13,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "./shared/login/actions";
 import { dashboardRoute } from "./utils/routeContants";
+import { AiOutlineAudit } from "react-icons/ai";
 const { Content, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -25,7 +26,7 @@ function getItem(label, key, icon, children) {
 const items = [
   getItem("Dashboard", dashboardRoute, <PieChartOutlined />),
   getItem("Employee", "/employee", <TeamOutlined />),
-  getItem("Regularize", "/regularize", <TeamOutlined />),
+  getItem("Regularize", "/regularize", <AiOutlineAudit />),
 ];
 const AppLayout = ({ children }) => {
   const naviagte = useNavigate();

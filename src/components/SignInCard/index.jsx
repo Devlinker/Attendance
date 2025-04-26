@@ -141,7 +141,7 @@ const SignInCard = () => {
     });
 
     if (isEmailValid && password !== "") {
-      setDisable(true);
+      // setDisable(true);
       dispatch(login({ email, password }));
     }
   };

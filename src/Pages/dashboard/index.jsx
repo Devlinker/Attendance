@@ -70,7 +70,7 @@ const Dashboard = () => {
     });
   };
   const handleOk = () => {
-    // setIsModalOpen(false);
+    setIsModalOpen(false);
     // dispatch(
     //   regularize({
     //     checked_in_time: regularizeTimeRange.checked_in_time,
@@ -253,6 +253,7 @@ const Dashboard = () => {
         title={<div>Regularize For {isModalOpen}</div>}
         isModalOpen={isModalOpen}
         okText={"Submit"}
+
         handleOk={handleOk}
         handleCancel={handleCancel}
         children={
