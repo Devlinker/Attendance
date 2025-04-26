@@ -7,3 +7,5 @@ export const dashboardRoute = "/dashboard";
 /* EMPLOYEE */
 export const employeeRoute = "/employee";
 export const addUserRoute = "/employee/add-user";
+
+export const regularize = "/regularize";

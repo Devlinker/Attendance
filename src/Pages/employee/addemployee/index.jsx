@@ -222,7 +222,7 @@ const AddEmployee = () => {
   return (
     <div className="add-employee">
       <div className="employee-header">
-        <CustomButton
+        <CustomButton className={"hello-button"}
           width="35px"
           onClick={() => navigate(employeeRoute)}
           customStyles={{ marginBottom: "20px" }}
@@ -235,8 +235,9 @@ const AddEmployee = () => {
                 boxShadow: "unset",
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center",
-                padding: "6px 0px"
+                fontSize: "16px",
+                // alignItems: "center",
+                padding: "6px 0px",
               }}
             >
               <FaArrowLeft />
@@ -245,130 +246,131 @@ const AddEmployee = () => {
         />
         <h1>{id ? "Edit Employee" : "Create Employee"}</h1>
       </div>
-
       <div className="add-employee-container">
-        <CommonInput
-          label="Name"
-          placeholder="Enter your Name"
-          width="100%"
-          value={addEmployeeForm.data.name}
-          onChange={(e) => handleChange("name", e.target.value)}
-          error={addEmployeeForm.error.name}
-          errorText={addEmployeeForm.error.name}
-        />
-        <CommonInput
-          label="Email"
-          placeholder="Enter your Email"
-          width="100%"
-          disabled={id}
-          value={addEmployeeForm.data.email}
-          onChange={(e) => handleChange("email", e.target.value)}
-          error={addEmployeeForm.error.email}
-          errorText={addEmployeeForm.error.email}
-        />
-        {!id && (
+        <div className="add-employee">
           <CommonInput
-            label="Password"
-            type="password"
-            placeholder="Enter your Password"
+            label="Name"
+            placeholder="Enter your Name"
             width="100%"
-            value={addEmployeeForm.data.password}
-            onChange={(e) => handleChange("password", e.target.value)}
-            error={addEmployeeForm.error.password}
-            errorText={addEmployeeForm.error.password}
+            value={addEmployeeForm.data.name}
+            onChange={(e) => handleChange("name", e.target.value)}
+            error={addEmployeeForm.error.name}
+            errorText={addEmployeeForm.error.name}
           />
-        )}
-        <Datepicker
-          label="Date Of Birth"
-          width="100%"
-          value={
-            addEmployeeForm.data.dob
-              ? dayjs(addEmployeeForm.data.dob)
-              : addEmployeeForm.data.dob
-          }
-          onChange={(value) =>
-            handleChange("dob", dayjs(value).format("YYYY-MM-DD"))
-          }
-          error={addEmployeeForm.error.dob}
-          errorText={addEmployeeForm.error.dob}
-        />
-        <CommonInput
-          label="Phone Number"
-          placeholder="Enter your Number"
-          width="100%"
-          value={addEmployeeForm.data.mobile_number}
-          onChange={(e) => handleChange("mobile_number", e.target.value)}
-          error={addEmployeeForm.error.mobile_number}
-          errorText={addEmployeeForm.error.mobile_number}
-        />
-        <SelectBox
-          label="Work Location"
-          options={[
-            { label: "Home", value: "home" },
-            { label: "Office", value: "office" },
-          ]}
-          width="100%"
-          placeholder="Select Location"
-          value={addEmployeeForm.data.work_location}
-          onChange={(value) => handleChange("work_location", value)}
-          error={addEmployeeForm.error.work_location}
-          errorText={addEmployeeForm.error.work_location}
-        />
-        {addEmployeeForm.data.work_location == "home" && (
+          <CommonInput
+            label="Email"
+            placeholder="Enter your Email"
+            width="100%"
+            disabled={id}
+            value={addEmployeeForm.data.email}
+            onChange={(e) => handleChange("email", e.target.value)}
+            error={addEmployeeForm.error.email}
+            errorText={addEmployeeForm.error.email}
+          />
+          {!id && (
+            <CommonInput
+              label="Password"
+              type="password"
+              placeholder="Enter your Password"
+              width="100%"
+              value={addEmployeeForm.data.password}
+              onChange={(e) => handleChange("password", e.target.value)}
+              error={addEmployeeForm.error.password}
+              errorText={addEmployeeForm.error.password}
+            />
+          )}
           <Datepicker
-            label="Valid Date"
+            label="Date Of Birth"
             width="100%"
-            value={addEmployeeForm.data.work_location_valid_till}
-            onChange={(value) =>
-              handleChange(
-                "work_location_valid_till",
-                dayjs(value).format("YYYY-MM-DD")
-              )
+            value={
+              addEmployeeForm.data.dob
+                ? dayjs(addEmployeeForm.data.dob)
+                : addEmployeeForm.data.dob
             }
-            error={addEmployeeForm.error.work_location_valid_till}
-            errorText={addEmployeeForm.error.work_location_valid_till}
+            onChange={(value) =>
+              handleChange("dob", dayjs(value).format("YYYY-MM-DD"))
+            }
+            error={addEmployeeForm.error.dob}
+            errorText={addEmployeeForm.error.dob}
           />
-        )}
-        <CommonInput
-          label="Employee Code"
-          placeholder="Enter your Code"
-          width="100%"
-          value={addEmployeeForm.data.employee_code}
-          onChange={(e) => handleChange("employee_code", e.target.value)}
-          error={addEmployeeForm.error.employee_code}
-          errorText={addEmployeeForm.error.employee_code}
-        />
-        <SelectBox
-          label="Project Id"
-          options={projectsData?.projects?.data?.map((item) => ({
-            value: item.project_id,
-            label: item.project_name,
-          }))}
-          width="100%"
-          placeholder="Select Project"
-          value={Number(addEmployeeForm.data.project_id)}
-          onChange={(value) => handleChange("project_id", `${value}`)}
-          error={addEmployeeForm.error.project_id}
-          errorText={addEmployeeForm.error.project_id}
-        />
-        <SelectBox
-          label="Company"
-          options={companyiesData?.company?.data?.map((item) => ({
-            value: item.company_id,
-            label: item.company_name,
-          }))}
-          width="100%"
-          placeholder="Select Company"
-          value={addEmployeeForm.data.company_id}
-          onChange={(value) => handleChange("company_id", value)}
-          error={addEmployeeForm.error.company_id}
-          errorText={addEmployeeForm.error.company_id}
-        />
-        <CustomButton
-          width="70px"
-          buttonTxt={id ? "Edit" : "Create"}
-          onClick={handleSubmit}
-        />
+          <CommonInput
+            label="Phone Number"
+            placeholder="Enter your Number"
+            width="100%"
+            value={addEmployeeForm.data.mobile_number}
+            onChange={(e) => handleChange("mobile_number", e.target.value)}
+            error={addEmployeeForm.error.mobile_number}
+            errorText={addEmployeeForm.error.mobile_number}
+          />
+          <SelectBox
+            label="Work Location"
+            options={[
+              { label: "Home", value: "home" },
+              { label: "Office", value: "office" },
+            ]}
+            width="100%"
+            placeholder="Select Location"
+            value={addEmployeeForm.data.work_location}
+            onChange={(value) => handleChange("work_location", value)}
+            error={addEmployeeForm.error.work_location}
+            errorText={addEmployeeForm.error.work_location}
+          />
+          {addEmployeeForm.data.work_location == "home" && (
+            <Datepicker
+              label="Valid Date"
+              width="100%"
+              value={addEmployeeForm?.data?.work_location_valid_till}
+              onChange={(value) =>
+                handleChange(
+                  "work_location_valid_till",
+                  dayjs(value).format("YYYY-MM-DD")
+                )
+              }
+              error={addEmployeeForm.error.work_location_valid_till}
+              errorText={addEmployeeForm.error.work_location_valid_till}
+            />
+          )}
+          <CommonInput
+            label="Employee Code"
+            placeholder="Enter your Code"
+            width="100%"
+            value={addEmployeeForm.data.employee_code}
+            onChange={(e) => handleChange("employee_code", e.target.value)}
+            error={addEmployeeForm.error.employee_code}
+            errorText={addEmployeeForm.error.employee_code}
+          />
+          <SelectBox
+            label="Project Id"
+            options={projectsData?.projects?.data?.map((item) => ({
+              value: item.project_id,
+              label: item.project_name,
+            }))}
+            width="100%"
+            placeholder="Select Project"
+            value={Number(addEmployeeForm.data.project_id)}
+            onChange={(value) => handleChange("project_id", `${value}`)}
+            error={addEmployeeForm.error.project_id}
+            errorText={addEmployeeForm.error.project_id}
+          />
+          <SelectBox
+            label="Company"
+            options={companyiesData?.company?.data?.map((item) => ({
+              value: item.company_id,
+              label: item.company_name,
+            }))}
+            width="100%"
+            placeholder="Select Company"
+            value={addEmployeeForm.data.company_id}
+            onChange={(value) => handleChange("company_id", value)}
+            error={addEmployeeForm.error.company_id}
+            errorText={addEmployeeForm.error.company_id}
+          />
+          <CustomButton
+            width="70px"
+            buttonTxt={id ? "Edit" : "Create"}
+            onClick={handleSubmit}
+          />
+        </div>
       </div>
     </div>
   );

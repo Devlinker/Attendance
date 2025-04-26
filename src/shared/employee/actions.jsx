@@ -15,28 +15,54 @@ import {
 import { axiosPrivate } from "../axios.jsx";
 import * as API_END_POINT from "../ApiEndPoints.jsx";
 
-export function employeelist(params) {
+// export function employeelist(params) {
+//   return async (dispatch) => {
+//     dispatch({
+//       type: EMPLOYEE_LIST,
+//     });
+//     try {
+//       const response = await axiosPrivate.get(API_END_POINT.EMPLOYEELIST, {
+//         params,
+//       });
+
+//       if (response.status === 200) {
+//         dispatch({
+//           type: EMPLOYEE_LIST_SUCCESS,
+//           payload: response.data,
+//         });
+//       } else if (response.status === 400) {
+//         dispatch({
+//           type: EMPLOYEE_LIST_FAILURE,
+//           payload: response.data,
+//         });
+//       }
+//     } catch (err) {}
+//   };
+// }
+
+export function employeelist({ page = 1, items = 10 }) {
   return async (dispatch) => {
-    dispatch({
-      type: EMPLOYEE_LIST,
-    });
+    dispatch({ type: EMPLOYEE_LIST });
+
     try {
       const response = await axiosPrivate.get(API_END_POINT.EMPLOYEELIST, {
-        params,
+        params: {
+          paginate: 1,
+          page: Number(page) || 1,
+          items: Number(items) || 10,
+        },
       });
 
-      if (response.status === 200) {
-        dispatch({
-          type: EMPLOYEE_LIST_SUCCESS,
-          payload: response.data,
-        });
-      } else if (response.status === 400) {
-        dispatch({
-          type: EMPLOYEE_LIST_FAILURE,
-          payload: response.data,
-        });
-      }
-    } catch (err) {}
+      dispatch({
+        type: EMPLOYEE_LIST_SUCCESS,
+        payload: { ...response.data, current: page, pageSize: items },
+      });
+    } catch (err) {
+      dispatch({
+        type: EMPLOYEE_LIST_FAILURE,
+        payload: err?.response?.data,
+      });
+    }
   };
 }
 
@@ -78,8 +104,9 @@ export function editemployee(id, payload, cb) {
       type: EDIT_EMPLOYEE,
     });
     try {
-      const response = await axiosPrivate.put(`${API_END_POINT.EDITEMPLOYEE}${id}`,
-        payload,
+      const response = await axiosPrivate.put(
+        `${API_END_POINT.EDITEMPLOYEE}${id}`,
+        payload
       );
 
       if (response.status === 200) {

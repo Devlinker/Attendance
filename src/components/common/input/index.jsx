@@ -119,7 +119,9 @@ const CommonInput = ({
           </label>
         )}
 
-        {error && errorText && <p className="error">{errorText}</p>}
+        {error && errorText && (
+          <p className="error">{errorText}</p>
+        )}
       </div>
     );
   } catch (err) {

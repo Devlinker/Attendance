@@ -7,7 +7,7 @@ const CustomTable = ({
   data,
   pagination,
   loading,
-  onChange,
+  onChange = () => {},
   className,
   ...props
 }) => {
@@ -19,7 +19,7 @@ const CustomTable = ({
         dataSource={data}
         className={`customTable ${className}`}
         pagination={pagination ? pagination : false}
-        onChange={onChange ? onChange : false}
+        onChange={onChange}
         {...props}
       />
     </>

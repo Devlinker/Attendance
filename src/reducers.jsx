@@ -5,10 +5,11 @@ import LoginReducer from "./shared/login";
 // import UserReducer from "./shared/userlist";
 // import SignupReducer from "./shared/signup";
 import ProfileReducer from "./shared/profile";
-import dashboardreducer from "./shared/dashboard";
+import dashboardreducer, { regularize } from "./shared/dashboard";
 import employeereducer from "./shared/employee";
-import projectsreducer from "./shared/projects"
+import projectsreducer from "./shared/projects";
 import companyreducer from "./shared/company";
+import regularizeReducer from "./shared/regularize";
 import passwordreducer from "./shared/changepassword";
 // import statusreducer from "./shared/changestatus";
 
@@ -23,6 +24,7 @@ export default function createReducer(history) {
     employee: employeereducer,
     projects: projectsreducer,
     company: companyreducer,
+    regularize: regularizeReducer,
     password: passwordreducer,
     // status: statusreducer,
   });

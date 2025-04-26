@@ -14,7 +14,7 @@ const Datepicker = ({
     <DatePicker
       style={{ width, height }}
       format={{
-        format: "DD-MM-YYYY",
+        format: ("DD-MM-YYYY"),
         type: "mask",
       }}
       onChange={onChange}

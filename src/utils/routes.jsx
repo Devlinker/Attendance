@@ -5,6 +5,7 @@ import Dashboard from "../Pages/dashboard";
 import { dashboardRoute, rootRoute } from "./routeContants";
 import Employee from "../Pages/employee";
 import AddEmployee from "../Pages/employee/addemployee";
+import RegularizeList from "../Pages/regularize";
 
 export const ROUTES = [
   {
@@ -28,6 +29,11 @@ export const ROUTES = [
   {
     path: "/employee/add-user/:id?",
     element: <AddEmployee />,
+    isPrivate: true,
+  },
+  {
+    path: "/regularize",
+    element: <RegularizeList />,
     isPrivate: true,
   },
   {

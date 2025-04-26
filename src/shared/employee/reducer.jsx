@@ -16,7 +16,12 @@ import {
 const INIT_STATE = {
   error: null,
   employeeListLoader: false,
-  employeelist: {},
+  employeelist: [],
+  pagination: {
+    total: 0,
+    pageSize: 10,
+    current: 1,
+  },
   addemployee: {},
   editemployee: {},
   getemployeedetails: {},
@@ -30,7 +35,12 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         employeeListLoader: false,
-        employeelist: action.payload,
+        employeelist: action.payload?.data || [],
+        pagination: {
+          total: action.payload?.pagination?.total_count,
+          current: action.payload?.current,
+          pageSize: action?.payload?.pageSize,
+        },
       };
 
     case EMPLOYEE_LIST_FAILURE:

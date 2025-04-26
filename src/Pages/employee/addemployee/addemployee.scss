@@ -1,14 +1,29 @@
-.add-employee {
+// .add-employee {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   h1 {
+//     padding: 20px 0px;
+//   }
+
+.employee-header{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  h1 {
-    padding: 20px 0px;
-  }
-  .add-employee-container {
+  justify-content: center;
+  padding: 20px 0px ;
+  position: relative;
+}
+.add-employee-container{
+  display: flex;
+  justify-content: center;
+  .add-employee {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
     width: 50%;
   }
+}
+
+.hello-button{
+position: absolute;
+left: 320px;
 }

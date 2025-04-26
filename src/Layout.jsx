@@ -25,6 +25,7 @@ function getItem(label, key, icon, children) {
 const items = [
   getItem("Dashboard", dashboardRoute, <PieChartOutlined />),
   getItem("Employee", "/employee", <TeamOutlined />),
+  getItem("Regularize", "/regularize", <TeamOutlined />),
 ];
 const AppLayout = ({ children }) => {
   const naviagte = useNavigate();
