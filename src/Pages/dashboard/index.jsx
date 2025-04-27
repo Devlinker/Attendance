@@ -25,6 +25,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import TextAreainput from "../../components/common/textarea";
+import { useNotification } from "../../utils/notifications";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -69,6 +70,8 @@ const Dashboard = () => {
         : null,
     });
   };
+  const notify = useNotification();
+
   const handleOk = () => {
     setIsModalOpen(false);
     // dispatch(
@@ -92,12 +95,22 @@ const Dashboard = () => {
 
     // Dispatch to Redux
     dispatch(
-      regularize({
-        checked_in_time: formattedCheckIn,
-        checked_out_time: formattedCheckOut,
-        attendance_date: moment(isModalOpen, "DD-MM-YYYY").format("YYYY-MM-DD"), // assuming this is the date
-        regularize_reason: regularizeTimeRange.regularize_reason,
-      })
+      regularize(
+        {
+          checked_in_time: formattedCheckIn,
+          checked_out_time: formattedCheckOut,
+          attendance_date: moment(isModalOpen, "DD-MM-YYYY").format(
+            "YYYY-MM-DD"
+          ), // assuming this is the date
+          regularize_reason: regularizeTimeRange.regularize_reason,
+        },
+        (message) => {
+          notify("success", "Success!", message);
+        },
+        (errMessage) => {
+          notify("error", "Failed!", errMessage);
+        }
+      )
     );
   };
   const handleCancel = () => {
@@ -253,7 +266,6 @@ const Dashboard = () => {
         title={<div>Regularize For {isModalOpen}</div>}
         isModalOpen={isModalOpen}
         okText={"Submit"}
-
         handleOk={handleOk}
         handleCancel={handleCancel}
         children={

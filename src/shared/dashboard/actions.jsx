@@ -128,7 +128,7 @@ export function worklogs() {
   };
 }
 
-export function regularize(payload) {
+export function regularize(payload, cb, errCb) {
   return async (dispatch) => {
     dispatch({
       type: REGULARIZE,
@@ -138,22 +138,25 @@ export function regularize(payload) {
         API_END_POINT.REGULARIZE,
         payload
       );
-      if (response.status === 200) {
+      if (response.status === 201) {
         dispatch({
           type: REGULARIZE_SUCCESS,
           payload: response.data,
         });
+        cb && cb(response?.data?.message);
       } else if (response.status === 400 || response.status === 500) {
         dispatch({
           type: REGULARIZE_FAILURE,
           payload: response?.data || "",
         });
+        errCb && errCb();
       }
     } catch (err) {
       dispatch({
         type: REGULARIZE_FAILURE,
         payload: err?.response?.data || "API Error",
       });
+      errCb && errCb();
     }
   };
 }

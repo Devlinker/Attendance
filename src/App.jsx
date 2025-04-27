@@ -10,7 +10,8 @@ import { ROUTES } from "./utils/routes";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "./shared/profile";
 import AppLayout from "./Layout";
-import "./global.css"
+import "./global.css";
+import { NotificationProvider } from "./utils/notifications";
 
 function PrivateRoute({ element }) {
   const { isAuthenticated } = useSelector((state) => state.login);
@@ -29,23 +30,25 @@ function PrivateRoute({ element }) {
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        {ROUTES.map(({ path, element, isPrivate }) => (
-          <Route
-            key={path}
-            path={path}
-            element={
-              isPrivate ? (
-                <PrivateRoute element={<AppLayout>{element}</AppLayout>} />
-              ) : (
-                element
-              )
-            }
-          />
-        ))}
-      </Routes>
-    </BrowserRouter>
+    <NotificationProvider>
+      <BrowserRouter>
+        <Routes>
+          {ROUTES.map(({ path, element, isPrivate }) => (
+            <Route
+              key={path}
+              path={path}
+              element={
+                isPrivate ? (
+                  <PrivateRoute element={<AppLayout>{element}</AppLayout>} />
+                ) : (
+                  element
+                )
+              }
+            />
+          ))}
+        </Routes>
+      </BrowserRouter>
+    </NotificationProvider>
   );
 };
 
