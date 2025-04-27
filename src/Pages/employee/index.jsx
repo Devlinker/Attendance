@@ -244,10 +244,11 @@ import "./employee.scss";
 import CustomButton from "../../components/common/custombutton";
 import { Tooltip } from "antd";
 import { EditOutlined } from "@ant-design/icons";
-import { MdAirplanemodeActive, MdOutlineLockReset } from "react-icons/md";
+import { MdOutlineLockReset } from "react-icons/md";
 import CommonPopup from "../../components/common/popup";
 import CommonInput from "../../components/common/input";
 import { changepassword } from "../../shared/changepassword/actions";
+import { HiOutlineEye } from "react-icons/hi";
 
 const Employee = () => {
   const dispatch = useDispatch();
@@ -332,7 +333,7 @@ const Employee = () => {
               />
             </Tooltip>
             <Tooltip title="Active">
-              <MdAirplanemodeActive />
+              <HiOutlineEye />
             </Tooltip>
           </div>
         </div>

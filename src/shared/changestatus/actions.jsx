@@ -12,7 +12,7 @@ export function changepassword(params) {
       type: CHANGE_STATUS,
     });
     try {
-      const response = await axiosPrivate.get(API_END_POINT.COMPANY, {
+      const response = await axiosPrivate.get(API_END_POINT.CHANGESTATUS, {
         params,
       });
 
