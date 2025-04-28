@@ -8,7 +8,7 @@ import {
   LOGIN_INIT,
 } from "../ActionTypes.jsx";
 
-export function login(formData) {
+export function login(formData, cb , errcb ) {
   return async (dispatch) => {
     dispatch({
       type: LOGIN_INIT,
@@ -25,17 +25,26 @@ export function login(formData) {
           type: LOGIN_SUCCESS,
           payload: response.data,
         });
+        console.log(response?.data?.message , 'login');
+        
+        cb && cb(response?.data?.message)
+        console.log(LOGIN_INIT );
       } else if (response.status === 400) {
         dispatch({
           type: LOGIN_ERROR,
           payload: response.data,
         });
+
+        console.log(response?.data , 'error')
+        errcb && errcb (response)
       }
     } catch (err) {
       dispatch({
         type: LOGIN_ERROR,
         payload: err?.response?.data,
       });
+      console.log(err?.response?.data?.message, "error 2");
+      errcb && errcb(err?.response?.data?.message);
     }
   };
 }

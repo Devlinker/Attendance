@@ -1,8 +1,9 @@
 import React from "react";
 import { Badge, Calendar, ConfigProvider } from "antd";
-import "./commoncalender.scss";
+import "./tablecalendar.scss";
 import moment from "moment-timezone";
 import enGb from "antd/locale/en_GB";
+import dayjs from "dayjs";
 
 const Tablecalendar = ({
   calendardata,
@@ -117,16 +118,30 @@ const Tablecalendar = ({
       <Calendar
         cellRender={cellRender}
         onSelect={(e) => {
+          const today = dayjs();
+          const yesterday = today.clone().subtract(1, "day");
+          const firstDayOfMonth = today.clone().startOf("month");
+          const selectedDate = e.clone().startOf("day");
+
           if (
-            e.month() + 1 != calendarFilter.month ||
-            e.year() != calendarFilter.year
+            e.month() + 1 !== calendarFilter.month ||
+            e.year() !== calendarFilter.year
           ) {
             setCalendarFilter({
               month: e.month() + 1,
               year: e.year(),
             });
           } else {
-            validateDateClick(e);
+            if (
+              (selectedDate.isAfter(firstDayOfMonth, "day") ||
+                selectedDate.isSame(firstDayOfMonth, "day")) &&
+              selectedDate.isBefore(today, "day")
+            ) {
+              validateDateClick(e);
+            }
+            else {
+              
+            }
           }
         }}
       />

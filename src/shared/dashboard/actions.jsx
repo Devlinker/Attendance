@@ -18,7 +18,7 @@ import {
   REGULARIZE_FAILURE,
 } from "../ActionTypes.jsx";
 
-export function checkin(payload, successCb) {
+export function checkin(payload, successCb, errorcb) {
   return async (dispatch) => {
     dispatch({
       type: CHECK_IN,
@@ -31,12 +31,13 @@ export function checkin(payload, successCb) {
           type: CHECK_IN_SUCCESS,
           payload: response.data,
         });
-        successCb && successCb();
+        successCb && successCb(response?.message);
       } else if (response.status === 400) {
         dispatch({
           type: CHECK_IN_FAILURE,
           payload: response.data,
         });
+        errorcb && errorcb(response?.data?.message);
       }
     } catch (err) {
       dispatch({
@@ -149,14 +150,14 @@ export function regularize(payload, cb, errCb) {
           type: REGULARIZE_FAILURE,
           payload: response?.data || "",
         });
-        errCb && errCb();
+        errCb && errCb(response?.data?.message);
       }
     } catch (err) {
       dispatch({
         type: REGULARIZE_FAILURE,
         payload: err?.response?.data || "API Error",
       });
-      errCb && errCb();
+      errCb && errCb(err?.response?.data?.message);
     }
   };
 }

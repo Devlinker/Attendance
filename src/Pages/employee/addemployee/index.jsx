@@ -13,12 +13,14 @@ import {
 import { getcompanyies } from "../../../shared/company/actions";
 import { getProjects } from "../../../shared/projects/actions";
 import dayjs from "dayjs";
-import { useNavigate, useParams } from "react-router-dom";
-import { employeeRoute } from "../../../utils/routeContants";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { employeeRoute } from "../../../utils/routeContants";
+import { useNotification } from "../../../utils/notifications";
 
 const AddEmployee = () => {
   const { id } = useParams();
+  const notify = useNotification();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -54,7 +56,9 @@ const AddEmployee = () => {
 
       // Min length
       if (rules.minLength && value?.length < rules.minLength) {
-        errors[field] = `Minimum ${rules.minLength} characters required`;
+        // errors[field] = `Minimum ${rules.minLength} characters required`;
+        errors[field] = "This field is required";
+
         isValid = false;
       }
     });
@@ -105,7 +109,16 @@ const AddEmployee = () => {
       dispatch(editemployee(id, payload, () => navigate(employeeRoute)));
     } else {
       dispatch(
-        addemployee(addEmployeeForm.data, () => navigate(employeeRoute))
+        addemployee(
+          addEmployeeForm.data,
+          (message) => {
+            notify("success", "Success!", message);
+            navigate(employeeRoute);
+          },
+          (errMessage) => {
+            notify("error", "Failed!", errMessage);
+          }
+        )
       );
     }
   };
@@ -222,28 +235,9 @@ const AddEmployee = () => {
   return (
     <div className="add-employee">
       <div className="employee-header">
-        <CustomButton className={"hello-button"}
-          width="35px"
-          onClick={() => navigate(employeeRoute)}
-          customStyles={{ marginBottom: "20px" }}
-          rightIcon={
-            <div
-              style={{
-                backgroundColor: "#E8E4E4",
-                borderRadius: "6px",
-                border: "1px solid #E8E4E4",
-                boxShadow: "unset",
-                display: "flex",
-                justifyContent: "center",
-                fontSize: "16px",
-                // alignItems: "center",
-                padding: "6px 0px",
-              }}
-            >
-              <FaArrowLeft />
-            </div>
-          }
-        />
+        <div className="back-btn">
+          <FaArrowLeft onClick={() => navigate(employeeRoute)} />
+        </div>
         <h1>{id ? "Edit Employee" : "Create Employee"}</h1>
       </div>
       <div className="add-employee-container">
@@ -319,7 +313,12 @@ const AddEmployee = () => {
             <Datepicker
               label="Valid Date"
               width="100%"
-              value={addEmployeeForm?.data?.work_location_valid_till}
+              value={
+                addEmployeeForm?.data?.work_location_valid_till
+                  ? dayjs(addEmployeeForm?.data?.work_location_valid_till)
+                  : addEmployeeForm?.data?.work_location_valid_till
+              }
+              onlyAllowFutureDates
               onChange={(value) =>
                 handleChange(
                   "work_location_valid_till",

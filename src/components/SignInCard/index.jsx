@@ -101,7 +101,6 @@
 
 // export default SignInCard;
 
-
 import React, { useEffect, useState } from "react";
 import "./signincard.scss";
 import Commoncheckbox from "../../components/common/checkbox/commoncheckbox";
@@ -112,7 +111,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../shared/login/actions";
 import { dashboardRoute } from "../../utils/routeContants";
-import Popupnotification from "../common/notification";
+import { useNotification } from "../../utils/notifications";
 
 const SignInCard = () => {
   const navigate = useNavigate();
@@ -126,6 +125,8 @@ const SignInCard = () => {
   const [err, setErr] = useState({ email: false, pass: false });
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  const notify = useNotification();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -143,7 +144,19 @@ const SignInCard = () => {
 
     if (isEmailValid && password !== "") {
       // setDisable(true);
-      dispatch(login({ email, password }));
+      dispatch(
+        login(
+          { email, password },
+          (message) => {
+            console.log(message, "success");
+            notify("success", "Success!", message);
+          },
+          (errmessage) => {
+            console.log(errmessage, "error");
+            notify("error", "Failed!", errmessage);
+          }
+        )
+      );
     }
   };
 

@@ -6,13 +6,22 @@
 //     padding: 20px 0px;
 //   }
 
-.employee-header{
+.employee-header {
   display: flex;
   justify-content: center;
-  padding: 20px 0px ;
+  padding: 20px 0px;
   position: relative;
+  .back-btn {
+    padding: 8px;
+    background-color: #ccc;
+    border-radius: 50%;
+    font-size: 18px;
+    height: 34px !important;
+    position: absolute;
+    left: 320px;
+  }
 }
-.add-employee-container{
+.add-employee-container {
   display: flex;
   justify-content: center;
   .add-employee {
@@ -23,7 +32,3 @@
   }
 }
 
-.hello-button{
-position: absolute;
-left: 320px;
-}

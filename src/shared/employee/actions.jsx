@@ -15,31 +15,6 @@ import {
 import { axiosPrivate } from "../axios.jsx";
 import * as API_END_POINT from "../ApiEndPoints.jsx";
 
-// export function employeelist(params) {
-//   return async (dispatch) => {
-//     dispatch({
-//       type: EMPLOYEE_LIST,
-//     });
-//     try {
-//       const response = await axiosPrivate.get(API_END_POINT.EMPLOYEELIST, {
-//         params,
-//       });
-
-//       if (response.status === 200) {
-//         dispatch({
-//           type: EMPLOYEE_LIST_SUCCESS,
-//           payload: response.data,
-//         });
-//       } else if (response.status === 400) {
-//         dispatch({
-//           type: EMPLOYEE_LIST_FAILURE,
-//           payload: response.data,
-//         });
-//       }
-//     } catch (err) {}
-//   };
-// }
-
 export function employeelist({ page = 1, items = 10 }) {
   return async (dispatch) => {
     dispatch({ type: EMPLOYEE_LIST });
@@ -66,7 +41,7 @@ export function employeelist({ page = 1, items = 10 }) {
   };
 }
 
-export function addemployee(payload, cb) {
+export function addemployee(payload, cb, errcb) {
   return async (dispatch) => {
     dispatch({
       type: ADD_EMPLOYEE,
@@ -82,8 +57,9 @@ export function addemployee(payload, cb) {
           type: ADD_EMPLOYEE_SUCCESS,
           payload: response.data,
         });
-        cb && cb();
-      } else if (response.status === 400) {
+        console.log(response?.data?.message);
+        cb && cb(response?.data?.message);
+      } else if (response.status === 400 || response.status === 409) {
         dispatch({
           type: ADD_EMPLOYEE_FAILURE,
           payload: response.data,
@@ -94,6 +70,8 @@ export function addemployee(payload, cb) {
         type: ADD_EMPLOYEE_FAILURE,
         payload: err.response.data,
       });
+      console.log(err.response?.data?.message);
+      errcb && errcb(err?.response?.data?.message);
     }
   };
 }
@@ -114,7 +92,8 @@ export function editemployee(id, payload, cb) {
           type: EDIT_EMPLOYEE_SUCCESS,
           payload: response.data,
         });
-        cb && cb();
+        // console.log(response?.data?.message);
+        cb && cb(response?.data?.message);
       } else if (response.status === 400) {
         dispatch({
           type: EDIT_EMPLOYEE_FAILURE,

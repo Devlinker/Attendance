@@ -1,6 +1,7 @@
 import React from "react";
-import { DatePicker, Space } from "antd";
+import { DatePicker } from "antd";
 import "./datepicker.scss";
+
 const Datepicker = ({
   onChange,
   label,
@@ -8,25 +9,32 @@ const Datepicker = ({
   error,
   width = "100%",
   height = "40px",
-}) => (
-  <div className="datepicker-container">
-    <div className="label">{label}</div>
-    <DatePicker
-      style={{ width, height }}
-      format={{
-        format: ("DD-MM-YYYY"),
-        type: "mask",
-      }}
-      onChange={onChange}
-      value={value}
-    />
-    {error && <p className="errorDate">Date is Required</p>}
-  </div>
-);
-export default Datepicker;
+  onlyAllowFutureDates = false, // ➡️ new prop added
+}) => {
+  // ➡️ function to disable past dates if onlyAllowFutureDates is true
+  const disabledDate = (current) => {
+    if (!onlyAllowFutureDates) {
+      return false;
+    }
+    return current && current < new Date().setHours(0, 0, 0, 0);
+  };
 
-// display: block;
-//     margin-bottom: 0.5rem;
-//     margin-right: 0px;
-//     font-weight: bold;
-//     width: auto;
+  return (
+    <div className="datepicker-container">
+      <div className="label">{label}</div>
+      <DatePicker
+        style={{ width, height }}
+        format={{
+          format: "DD-MM-YYYY",
+          type: "mask",
+        }}
+        onChange={onChange}
+        value={value}
+        disabledDate={disabledDate} // ➡️ passing disabledDate
+      />
+      {error && <p className="errorDate">Date is Required</p>}
+    </div>
+  );
+};
+
+export default Datepicker;

@@ -14,7 +14,7 @@ import Usericons from "../../components/common/Avatar";
 import { MdOutlineEmail, MdOutlineTimer } from "react-icons/md";
 import { HiDotsVertical } from "react-icons/hi";
 import Checkintoggle from "../../components/common/checkintoggle";
-import { Divider, Form, TimePicker, Tooltip } from "antd";
+import { Alert, Divider, Form, TimePicker, Tooltip } from "antd";
 import moment from "moment";
 import LogStep from "../../components/common/steps";
 import { RiTimerLine } from "react-icons/ri";
@@ -107,8 +107,8 @@ const Dashboard = () => {
         (message) => {
           notify("success", "Success!", message);
         },
-        (errMessage) => {
-          notify("error", "Failed!", errMessage);
+        (errmessage) => {
+          notify("error", "Failed!", errmessage);
         }
       )
     );
@@ -227,6 +227,7 @@ const Dashboard = () => {
     setLoading(true);
     getLocation()
       .then(({ lat, lon }) => {
+        Alert("Unable to access location");
         console.log("Latitude:", lat, "Longitude:", lon);
         dispatch(
           checkin(
@@ -236,6 +237,12 @@ const Dashboard = () => {
               user_id: 1,
               project_id: 1,
             },
+            (message) => {
+              notify("success", "Success!", message);
+            },
+            (message) => {
+              notify("error", "Failed!", message);
+            },
             () => {
               setChecked(val);
             }
@@ -244,6 +251,7 @@ const Dashboard = () => {
       })
       .catch((error) => {
         setLoading(false);
+        // Alert("Unable to access location");
       });
   };
   const legendsData = [
