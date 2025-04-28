@@ -59,7 +59,7 @@ const Employee = () => {
       render: (record) => <div>{record || "--"}</div>,
     },
     {
-      title: "User Name",
+      title: "Employee Name",
       dataIndex: "name",
       key: "name",
     },

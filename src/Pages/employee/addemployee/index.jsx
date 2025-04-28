@@ -239,6 +239,9 @@ const AddEmployee = () => {
           <FaArrowLeft onClick={() => navigate(employeeRoute)} />
         </div>
         <h1>{id ? "Edit Employee" : "Create Employee"}</h1>
+        <div className="back-btn hidden">
+          <FaArrowLeft />
+        </div>
       </div>
       <div className="add-employee-container">
         <div className="add-employee">

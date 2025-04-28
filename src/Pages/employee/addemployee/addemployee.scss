@@ -5,20 +5,23 @@
 //   h1 {
 //     padding: 20px 0px;
 //   }
-
+.hidden {
+  visibility: hidden;
+  cursor: unset !important;
+}
 .employee-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  margin: 0 25%;
   padding: 20px 0px;
   position: relative;
   .back-btn {
     padding: 8px;
     background-color: #ccc;
+    cursor: pointer;
     border-radius: 50%;
     font-size: 18px;
     height: 34px !important;
-    position: absolute;
-    left: 320px;
   }
 }
 .add-employee-container {
@@ -31,4 +34,3 @@
     width: 50%;
   }
 }
-
