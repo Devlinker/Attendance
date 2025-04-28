@@ -117,6 +117,15 @@ const Tablecalendar = ({
     <ConfigProvider locale={enGb}>
       <Calendar
         cellRender={cellRender}
+        disabledDate={(current) => {
+          const today = dayjs();
+          const firstDayOfMonth = today.clone().startOf("month");
+          const lastDayOfMonth = today.clone().endOf("month");
+          return (
+            current.isBefore(firstDayOfMonth, "day") ||
+            current.isAfter(lastDayOfMonth, "day")
+          );
+        }}
         onSelect={(e) => {
           const today = dayjs();
           const yesterday = today.clone().subtract(1, "day");
@@ -138,9 +147,8 @@ const Tablecalendar = ({
               selectedDate.isBefore(today, "day")
             ) {
               validateDateClick(e);
-            }
-            else {
-              
+            } else {
+              // do nothing
             }
           }
         }}

@@ -7,6 +7,7 @@ import {
   fetchRegularizeList,
   submitRegularize,
 } from "../../shared/regularize/action";
+import "./regularizelist.scss"
 import CustomTable from "../../components/common/customtable";
 
 const RegularizeList = () => {
@@ -171,7 +172,7 @@ const RegularizeList = () => {
   return (
     <>
       <div className="users-container">
-        <h2>Regularize Requests</h2>
+        <h2 className="regularize-list-header">Regularize Requests</h2>
 
         {/* Spin wraps the table */}
         <Spin spinning={loading}>

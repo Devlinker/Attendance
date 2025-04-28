@@ -16,6 +16,8 @@ import CommonInput from "../../components/common/input";
 import { changepassword } from "../../shared/changepassword/actions";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { changestatus } from "../../shared/changestatus/actions";
+import { FaUserAlt, FaUserAltSlash } from "react-icons/fa";
+import { LuUserRoundCheck, LuUserRoundX } from "react-icons/lu";
 
 const Employee = () => {
   const dispatch = useDispatch();
@@ -101,7 +103,7 @@ const Employee = () => {
             </Tooltip>
             <Tooltip title={record.employee_status}>
               {record.employee_status == "active" ? (
-                <HiOutlineEye
+                <LuUserRoundCheck
                   style={{ color: "green", cursor: "pointer" }}
                   onClick={() =>
                     dispatch(
@@ -117,7 +119,7 @@ const Employee = () => {
                   }
                 />
               ) : record.employee_status == "inactive" ? (
-                <HiOutlineEyeOff
+                <LuUserRoundX
                   style={{ color: "red", cursor: "pointer" }}
                   onClick={() =>
                     dispatch(

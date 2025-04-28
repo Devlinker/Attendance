@@ -73,15 +73,6 @@ const Dashboard = () => {
   const notify = useNotification();
 
   const handleOk = () => {
-    setIsModalOpen(false);
-    // dispatch(
-    //   regularize({
-    //     checked_in_time: regularizeTimeRange.checked_in_time,
-    //     checked_out_time: regularizeTimeRange.checked_out_time,
-    //     attendance_date: isModalOpen,
-    //     regularize_reason: regularizeTimeRange.regularize_reason,
-    //   })
-    // );
     // Convert to desired format using dayjs
     const formattedCheckIn = dayjs(regularizeTimeRange.checked_in_time, [
       // "hh.mmA",
@@ -106,6 +97,7 @@ const Dashboard = () => {
         },
         (message) => {
           notify("success", "Success!", message);
+          setIsModalOpen(false);
         },
         (errmessage) => {
           notify("error", "Failed!", errmessage);

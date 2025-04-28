@@ -6,6 +6,7 @@ const CommonPopup = ({
   okText,
   handleOk,
   handleCancel,
+  closable = false,
   children,
 }) => {
   return (
@@ -13,6 +14,7 @@ const CommonPopup = ({
       <Modal
         open={isModalOpen}
         title={title}
+        maskClosable={closable}
         okText={okText}
         onOk={handleOk}
         onCancel={handleCancel}
