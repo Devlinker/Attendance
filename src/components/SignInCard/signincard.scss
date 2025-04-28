@@ -1,0 +1,119 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f1f0ff;
+
+  .login-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 400px;
+
+    .logo img {
+      width: 110px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #191a55;
+      font-size: 30px;
+      justify-content: center;
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .options {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+
+        a {
+          color: #191a55;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .signin-btn {
+        background: #191a55;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        &:hover {
+          background: #19154a;
+        }
+      }
+
+      .signup-text {
+        font-size: 15px;
+        color: black;
+
+        span {
+          // color: #191a55;
+          color: black;
+          text-decoration: none;
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+            color: #191a55;
+          }
+        }
+      }
+
+      .social-login {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+
+        button {
+          width: 40px;
+          height: 40px;
+          border: none;
+          border-radius: 50%;
+          font-size: 16px;
+          cursor: pointer;
+          transition: transform 0.2s ease;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+
+        .google {
+          background: #db4437;
+          color: #fff;
+        }
+
+        .facebook {
+          background: #4267b2;
+          color: #fff;
+        }
+
+        .twitter {
+          background: #1da1f2;
+          color: #fff;
+        }
+      }
+    }
+  }
+}

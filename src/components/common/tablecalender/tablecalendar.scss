@@ -1,0 +1,89 @@
+.events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.events .ant-badge-status {
+  width: 100%;
+  overflow: hidden;
+  font-size: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.notes-month {
+  font-size: 28px;
+  text-align: center;
+}
+.notes-month section {
+  font-size: 28px;
+}
+.ant-radio-button {
+  display: none;
+}
+.ant-radio-button-wrapper:last-child {
+  display: none;
+}
+.ant-radio-button-wrapper-checked:first-child {
+  border-radius: 6px;
+}
+.ant-badge.ant-badge-status .ant-badge-status-text {
+  font-size: 11px !important;
+
+  .calendar-checkinout-ui{
+    font-size: 10px;
+    letter-spacing: -0.3px;
+    font-weight: 500;
+  }
+  .calendar-ph{
+    font-size: 9px;
+    font-weight: 500;
+  }
+  font-size: 10px !important;
+  // letter-spacing: -0.3px;
+  // font-weight: 500;
+}
+.events .ant-badge-status {
+  overflow: inherit !important;
+  white-space: normal !important;
+}
+.ant-radio-group {
+  display: none;
+}
+.ant-badge-status-success {
+  background-color: #52c41a59 !important;
+}
+.purple .ant-badge-status-dot {
+  background-color: #cccccc7d !important;
+}
+.red .ant-badge-status-dot {
+  background-color: #ee0a0a85 !important;
+}
+.orange .ant-badge-status-dot {
+  background-color: #ffa50066 !important;
+}
+.blue .ant-badge-status-dot {
+  background-color: #0000ff73 !important;
+}
+.black .ant-badge-status-dot {
+  background-color: #00ffff8f !important;
+}
+.ant-badge {
+  position: unset !important;
+}
+.ant-badge-status-dot {
+  top: 7px !important;
+  // display: inline-block;
+  width: 27px !important;
+  height: 27px !important;
+  // vertical-align: middle;
+  border-radius: 5px !important;
+  position: absolute !important;
+  right: 3px !important;
+  z-index: 0 !important;
+}
+.ant-picker-calendar-date-value {
+  z-index: 1 !important;
+  position: relative !important;
+  padding-top: 5px;
+}
+

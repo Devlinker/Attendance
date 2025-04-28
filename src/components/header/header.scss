@@ -1,0 +1,58 @@
+@import "../../styles/main.scss";
+.header {
+  background-color: $headerBg;
+}
+.dashboardcontent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  gap: 8px;
+  z-index: 9;
+  position: relative;
+  // box-shadow: 0px 0px 8px 1px #ccc;
+  .logo {
+    img {
+      width: 130px;
+    }
+  }
+  .profiledata {
+    display: flex;
+    gap: 8px;
+  }
+  h4 {
+    display: flex;
+    align-items: center;
+  }
+  .logoutbtn {
+    display: flex;
+    color: red;
+    font-size: 17px;
+  }
+}
+// display: flex;
+// padding: 13px;
+// .dashboardcontent{
+//     .headerclock{
+//         display: flex;
+//         align-items: center;
+//         justify-content: end;
+//         width: 61%;
+//     }
+//     .profiledata{
+//         display: flex;
+//         width: 39%;
+//         justify-content: end;
+//         align-items: center;
+//         gap: 8px;
+//     }
+//     .logoutbtn{
+//         font-size: 16px;
+//         color: red;
+//         display: flex;
+//         justify-content: end;
+//         padding-left: 10px;
+//         padding-right: 10px;
+//         align-items: center;
+//     }
+// }

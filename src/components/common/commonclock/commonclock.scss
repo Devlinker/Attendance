@@ -1,0 +1,27 @@
+@import "/src/styles/main.scss";
+
+.clockmenu{
+    // font-size: 15px;
+    padding: 3px 0px;
+    border-radius: 10px;
+    width: 170px;
+    justify-content: center;
+    display: flex;
+    .clockmenu-date{
+        font-size: 25px;
+        font-weight: 500;
+    }
+    .clockmenu-time{
+        font-size: 18px;
+    }
+}
+.header-timer{
+    height: 38px;
+    svg {
+    background-color: $secondaryColor;
+    padding: 6px;
+    border-radius: 50%;
+    font-size: 38px;
+}
+}
+ 
