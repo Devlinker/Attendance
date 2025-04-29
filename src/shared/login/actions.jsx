@@ -7,8 +7,9 @@ import {
   LOGOUT,
   LOGIN_INIT,
 } from "../ActionTypes.jsx";
+import { persistStore } from "redux-persist";
 
-export function login(formData, cb , errcb ) {
+export function login(formData, cb, errcb) {
   return async (dispatch) => {
     dispatch({
       type: LOGIN_INIT,
@@ -25,18 +26,18 @@ export function login(formData, cb , errcb ) {
           type: LOGIN_SUCCESS,
           payload: response.data,
         });
-        console.log(response?.data?.message , 'login');
-        
-        cb && cb(response?.data?.message)
-        console.log(LOGIN_INIT );
+        console.log(response?.data?.message, "login");
+
+        cb && cb(response?.data?.message);
+        console.log(LOGIN_INIT);
       } else if (response.status === 400) {
         dispatch({
           type: LOGIN_ERROR,
           payload: response.data,
         });
 
-        console.log(response?.data , 'error')
-        errcb && errcb (response)
+        console.log(response?.data, "error");
+        errcb && errcb(response);
       }
     } catch (err) {
       dispatch({
@@ -56,5 +57,6 @@ export function logoutAction() {
     await dispatch({
       type: LOGOUT,
     });
+    persistStore().purge(); // This will clear the persisted session storage
   };
 }
