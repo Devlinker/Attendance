@@ -26,7 +26,7 @@ export default function regularizeReducer(state = INIT_STATE, action) {
       return { ...state, loading: true };
 
     case REGULARIZE_LIST_SUCCESS:
-      console.log("Action Payload:", action.payload); // Log the payload
+      // console.log("Action Payload:", action.payload);
       return {
         ...state,
         loading: false,

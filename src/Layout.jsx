@@ -141,9 +141,10 @@ const AppLayout = ({ children }) => {
         <div className="logo">
           <img src="https://cartoonmango.com/cm-logo.gif" alt="" />
         </div>
+        {/* {console.log(pathname)} */}
         <Menu
           theme="dark"
-          selectedKeys={[pathname]}
+          selectedKeys={[pathname ? `/${pathname.split("/")[1]}` : "/"]}
           onClick={(e) => {
             navigate(e.key);
           }}

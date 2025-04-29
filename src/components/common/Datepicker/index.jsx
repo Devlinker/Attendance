@@ -7,11 +7,12 @@ const Datepicker = ({
   label,
   value,
   error,
+  className = "",
   width = "100%",
   height = "40px",
-  onlyAllowFutureDates = false, // ➡️ new prop added
+  onlyAllowFutureDates = false, 
 }) => {
-  // ➡️ function to disable past dates if onlyAllowFutureDates is true
+  
   const disabledDate = (current) => {
     if (!onlyAllowFutureDates) {
       return false;
@@ -20,7 +21,7 @@ const Datepicker = ({
   };
 
   return (
-    <div className="datepicker-container">
+    <div className={`datepicker-container  ${className}`}>
       <div className="label">{label}</div>
       <DatePicker
         style={{ width, height }}

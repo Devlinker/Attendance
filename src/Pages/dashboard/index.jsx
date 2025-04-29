@@ -7,7 +7,7 @@ import {
   regularize,
   worklogs,
 } from "../../shared/dashboard";
-import { getLocation } from "../../utils";
+import { getLocation, getSystemInfo } from "../../utils";
 import Tablecalendar from "../../components/common/tablecalender";
 import { FiLogIn, FiLogOut, FiPhone } from "react-icons/fi";
 import Usericons from "../../components/common/Avatar";
@@ -215,6 +215,8 @@ const Dashboard = () => {
     dispatch(worklogs());
   }, [checkinData]);
 
+  const info = getSystemInfo();
+
   const handleCheckin = (val) => {
     setLoading(true);
     dispatch(
@@ -224,6 +226,13 @@ const Dashboard = () => {
           longitude: 76.95064125131175,
           user_id: 1,
           project_id: 1,
+          is_desktop: true,
+          system_config: {
+            is_desktop: true,
+            os: info.os,
+            device_type: info.browser,
+            model: info.browser,
+          },
         },
         (message) => {
           notify("success", "Success!", message);
@@ -239,13 +248,13 @@ const Dashboard = () => {
     // getLocation()
     //   .then(({ lat, lon }) => {
     //     console.log("Latitude:", lat, "Longitude:", lon);
-        
+
     //   })
-  //     .catch((error) => {
-  //       console.log(error, "testing");
-  //       setLoading(false);
-  //       // Alert("Unable to access location");
-  //     });
+    //     .catch((error) => {
+    //       console.log(error, "testing");
+    //       setLoading(false);
+    //       // Alert("Unable to access location");
+    //     });
   };
   const legendsData = [
     { key: "absent", title: "Absent" },
@@ -261,6 +270,7 @@ const Dashboard = () => {
       [key]: time,
     }));
   };
+
   return (
     <div className="dashboardmain">
       <CommonPopup
@@ -279,7 +289,7 @@ const Dashboard = () => {
                   value={
                     regularizeTimeRange.checked_in_time
                       ? dayjs(regularizeTimeRange.checked_in_time)
-                      : regularizeTimeRange.checked_in_time
+                      : null
                   }
                   format="h:mm a"
                   onChange={(time, timeString) =>
@@ -291,18 +301,56 @@ const Dashboard = () => {
               <Form.Item label="Check-out Time" style={{ width: "100%" }}>
                 <TimePicker
                   style={{ width: "100%" }}
-                  // use12Hours
                   value={
                     regularizeTimeRange.checked_out_time
                       ? dayjs(regularizeTimeRange.checked_out_time)
-                      : regularizeTimeRange.checked_out_time
+                      : null
                   }
                   format="h:mm a"
+                  use12Hours
+                  disabledHours={() => {
+                    const checkIn = regularizeTimeRange.checked_in_time
+                      ? dayjs(regularizeTimeRange.checked_in_time)
+                      : null;
+
+                    if (!checkIn) return [];
+
+                    const disabled = [];
+                    for (let hour = 0; hour < 24; hour++) {
+                      const current = dayjs().hour(hour).minute(0);
+                      if (current.isBefore(dayjs(checkIn), "hour")) {
+                        disabled.push(hour);
+                      }
+                    }
+
+                    return disabled;
+                  }}
+                  disabledMinutes={(selectedHour) => {
+                    const checkIn = regularizeTimeRange.checked_in_time
+                      ? dayjs(regularizeTimeRange.checked_in_time)
+                      : null;
+
+                    if (!checkIn) return [];
+
+                    const hour = checkIn.hour();
+                    const minute = checkIn.minute();
+
+                    if (selectedHour < hour) {
+                      return Array.from({ length: 60 }, (_, i) => i); // disable all minutes
+                    }
+
+                    if (selectedHour === hour) {
+                      return Array.from({ length: minute + 1 }, (_, i) => i); // disable up to check-in minute
+                    }
+
+                    return [];
+                  }}
                   onChange={(time, timeString) =>
                     RegularizeModelChange("checked_out_time", time, timeString)
                   }
                 />
               </Form.Item>
+
               <TextAreainput
                 value={regularizeTimeRange.regularize_reason}
                 onChange={(val) =>
@@ -433,6 +481,21 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+          {/* <p>
+            <strong>Platform:</strong> {info.platform}
+          </p>
+          <p>
+            <strong>Operating System:</strong> {info.os}
+          </p>
+          <p>
+            <strong>Browser:</strong> {info.browser}
+          </p>
+          <p>
+            <strong>Engine:</strong> {info.engine}
+          </p>
+          <p>
+            <strong>User Agent:</strong> {info.userAgent}
+          </p> */}
         </div>
         <CommonPopup />
         <div className="worklog-container">

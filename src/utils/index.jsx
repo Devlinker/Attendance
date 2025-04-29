@@ -35,3 +35,46 @@ export const getLocation = () => {
     }
   });
 };
+
+export const getSystemInfo = () => {
+  const ua = navigator.userAgent;
+  const platform = navigator.platform;
+
+  // OS detection
+  const osMatch = ua.match(/\(([^)]+)\)/); // Extracts string inside ()
+  const osInfo = osMatch ? osMatch[1] : "Unknown OS";
+
+  // Browser detection
+  let browser = "Unknown Browser";
+  let version = "";
+
+  if (ua.includes("Chrome")) {
+    const match = ua.match(/Chrome\/([\d.]+)/);
+    browser = "Chrome";
+    version = match ? match[1] : "";
+  } else if (ua.includes("Safari") && ua.includes("Version")) {
+    const match = ua.match(/Version\/([\d.]+)/);
+    browser = "Safari";
+    version = match ? match[1] : "";
+  } else if (ua.includes("Firefox")) {
+    const match = ua.match(/Firefox\/([\d.]+)/);
+    browser = "Firefox";
+    version = match ? match[1] : "";
+  } else if (ua.includes("Edg")) {
+    const match = ua.match(/Edg\/([\d.]+)/);
+    browser = "Edge";
+    version = match ? match[1] : "";
+  }
+
+  // Engine (like WebKit or Gecko)
+  const engineMatch = ua.match(/(AppleWebKit|Gecko)\/[\d.]+/);
+  const engine = engineMatch ? engineMatch[0] : "Unknown Engine";
+
+  return {
+    platform,
+    os: osInfo,
+    browser: `${browser} ${version}`,
+    engine,
+    userAgent: ua,
+  };
+};

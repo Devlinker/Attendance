@@ -67,6 +67,7 @@ const CommonInput = ({
   type = "text",
   width = "100%",
   height = "40px",
+  className ="",
   labelPosition = "above", // "above", "below", "side"
   errorText, // Ensure errorText is being passed correctly
   ...rest
@@ -74,6 +75,7 @@ const CommonInput = ({
   try {
     return (
       <div
+        className={`${className}`}
         style={{
           marginBottom: "1rem",
           display: labelPosition === "side" ? "flex" : "block",
@@ -119,9 +121,7 @@ const CommonInput = ({
           </label>
         )}
 
-        {error && errorText && (
-          <p className="error">{errorText}</p>
-        )}
+        {error && errorText && <p className="error">{errorText}</p>}
       </div>
     );
   } catch (err) {

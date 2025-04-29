@@ -24,7 +24,7 @@ export const fetchRegularizeList = (page = 1, items = 10) => {
       });
 
       // Log the response to verify the structure
-      console.log("API Response:", res.data);
+      
 
       dispatch({ type: REGULARIZE_LIST_SUCCESS, payload: res.data });
     } catch (err) {

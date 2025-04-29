@@ -24,42 +24,37 @@ const AddEmployee = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const checkValid = () => {
+  const checkValid = (fieldToValidate = null, valueToValidate = null) => {
     const { data } = addEmployeeForm;
     let isValid = true;
-    const errors = {};
 
-    Object.entries(validationRules).forEach(([field, rules]) => {
-      const value = data[field];
+    const errors = { ...addEmployeeForm.error }; // keep existing errors
 
-      // Required field check
+    const fieldsToValidate = fieldToValidate
+      ? { [fieldToValidate]: validationRules[fieldToValidate] }
+      : validationRules;
+
+    Object.entries(fieldsToValidate).forEach(([field, rules]) => {
+      const value = field === fieldToValidate ? valueToValidate : data[field];
+
       if (rules.required && !value) {
         errors[field] = "This field is required";
         isValid = false;
-      }
-
-      // Conditional required (e.g., work from home date)
-      if (
+      } else if (
         rules.requiredIf &&
         data[rules.requiredIf] === rules.equals &&
         !value
       ) {
         errors[field] = "This field is required";
         isValid = false;
-      }
-
-      // Pattern match
-      if (rules.pattern && value && !rules.pattern.test(value)) {
+      } else if (rules.pattern && value && !rules.pattern.test(value)) {
         errors[field] = rules.message || "Invalid format";
         isValid = false;
-      }
-
-      // Min length
-      if (rules.minLength && value?.length < rules.minLength) {
-        // errors[field] = `Minimum ${rules.minLength} characters required`;
+      } else if (rules.minLength && value?.length < rules.minLength) {
         errors[field] = "This field is required";
-
         isValid = false;
+      } else {
+        errors[field] = ""; // clear error if the field is now valid
       }
     });
 
@@ -219,7 +214,6 @@ const AddEmployee = () => {
   }, [getemployeedetaildata?.getemployeedetails?.data]);
 
   const handleChange = (field, value) => {
-    checkValid();
     setaddEmployeeForm((prev) => ({
       ...prev,
       data: {
@@ -230,6 +224,7 @@ const AddEmployee = () => {
         }),
       },
     }));
+    checkValid(field, value);
   };
 
   return (
@@ -239,14 +234,15 @@ const AddEmployee = () => {
           <FaArrowLeft onClick={() => navigate(employeeRoute)} />
         </div>
         <h1>{id ? "Edit Employee" : "Create Employee"}</h1>
-        <div className="back-btn hidden">
+        {/* <div className="back-btn hidden">
           <FaArrowLeft />
-        </div>
+        </div> */}
       </div>
       <div className="add-employee-container">
         <div className="add-employee">
           <CommonInput
             label="Name"
+            className="addedit-employee-form"
             placeholder="Enter your Name"
             width="100%"
             value={addEmployeeForm.data.name}
@@ -256,6 +252,7 @@ const AddEmployee = () => {
           />
           <CommonInput
             label="Email"
+            className="addedit-employee-form"
             placeholder="Enter your Email"
             width="100%"
             disabled={id}
@@ -267,6 +264,7 @@ const AddEmployee = () => {
           {!id && (
             <CommonInput
               label="Password"
+              className="addedit-employee-form"
               type="password"
               placeholder="Enter your Password"
               width="100%"
@@ -278,6 +276,7 @@ const AddEmployee = () => {
           )}
           <Datepicker
             label="Date Of Birth"
+            className="addedit-employee-form"
             width="100%"
             value={
               addEmployeeForm.data.dob
@@ -285,13 +284,17 @@ const AddEmployee = () => {
                 : addEmployeeForm.data.dob
             }
             onChange={(value) =>
-              handleChange("dob", dayjs(value).format("YYYY-MM-DD"))
+              handleChange(
+                "dob",
+                value ? dayjs(value).format("YYYY-MM-DD") : value
+              )
             }
             error={addEmployeeForm.error.dob}
             errorText={addEmployeeForm.error.dob}
           />
           <CommonInput
             label="Phone Number"
+            className="addedit-employee-form"
             placeholder="Enter your Number"
             width="100%"
             value={addEmployeeForm.data.mobile_number}
@@ -301,6 +304,7 @@ const AddEmployee = () => {
           />
           <SelectBox
             label="Work Location"
+            className="addedit-employee-form"
             options={[
               { label: "Home", value: "home" },
               { label: "Office", value: "office" },
@@ -315,6 +319,7 @@ const AddEmployee = () => {
           {addEmployeeForm.data.work_location == "home" && (
             <Datepicker
               label="Valid Date"
+              className="addedit-employee-form"
               width="100%"
               value={
                 addEmployeeForm?.data?.work_location_valid_till
@@ -325,7 +330,7 @@ const AddEmployee = () => {
               onChange={(value) =>
                 handleChange(
                   "work_location_valid_till",
-                  dayjs(value).format("YYYY-MM-DD")
+                  value ? dayjs(value).format("YYYY-MM-DD") : value
                 )
               }
               error={addEmployeeForm.error.work_location_valid_till}
@@ -334,6 +339,7 @@ const AddEmployee = () => {
           )}
           <CommonInput
             label="Employee Code"
+            className="addedit-employee-form"
             placeholder="Enter your Code"
             width="100%"
             value={addEmployeeForm.data.employee_code}
@@ -343,19 +349,25 @@ const AddEmployee = () => {
           />
           <SelectBox
             label="Project Id"
+            className="addedit-employee-form"
             options={projectsData?.projects?.data?.map((item) => ({
               value: item.project_id,
               label: item.project_name,
             }))}
             width="100%"
             placeholder="Select Project"
-            value={Number(addEmployeeForm.data.project_id)}
+            value={
+              addEmployeeForm.data.project_id
+                ? Number(addEmployeeForm.data.project_id)
+                : addEmployeeForm.data.project_id
+            }
             onChange={(value) => handleChange("project_id", `${value}`)}
             error={addEmployeeForm.error.project_id}
             errorText={addEmployeeForm.error.project_id}
           />
           <SelectBox
             label="Company"
+            className="addedit-employee-form"
             options={companyiesData?.company?.data?.map((item) => ({
               value: item.company_id,
               label: item.company_name,
@@ -367,15 +379,20 @@ const AddEmployee = () => {
             error={addEmployeeForm.error.company_id}
             errorText={addEmployeeForm.error.company_id}
           />
-          <CustomButton
-            width="70px"
-            buttonTxt={id ? "Edit" : "Create"}
-            onClick={handleSubmit}
-          />
         </div>
+        <CustomButton
+          width="70px"
+          buttonTxt={id ? "Edit" : "Create"}
+          onClick={handleSubmit}
+        />
       </div>
     </div>
   );
+  <CustomButton
+    width="70px"
+    buttonTxt={id ? "Edit" : "Create"}
+    onClick={handleSubmit}
+  />;
 };
 
 export default AddEmployee;

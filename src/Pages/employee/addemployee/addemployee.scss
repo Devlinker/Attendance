@@ -11,10 +11,9 @@
 }
 .employee-header {
   display: flex;
-  justify-content: space-between;
-  margin: 0 25%;
-  padding: 20px 0px;
-  position: relative;
+  padding: 30px 30px;
+  gap: 15px;
+  align-items: center;
   .back-btn {
     padding: 8px;
     background-color: #ccc;
@@ -25,12 +24,18 @@
   }
 }
 .add-employee-container {
-  display: flex;
-  justify-content: center;
+  margin: 0px 30px;
+  padding: 20px 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
   .add-employee {
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    width: 50%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    .addedit-employee-form {
+      width: 49%;
+    }
   }
 }

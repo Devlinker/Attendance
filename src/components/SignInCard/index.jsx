@@ -148,11 +148,11 @@ const SignInCard = () => {
         login(
           { email, password },
           (message) => {
-            console.log(message, "success");
+            // console.log(message, "success");
             notify("success", "Success!", message);
           },
           (errmessage) => {
-            console.log(errmessage, "error");
+            // console.log(errmessage, "error");
             notify("error", "Failed!", errmessage);
           }
         )

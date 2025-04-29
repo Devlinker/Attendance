@@ -26,17 +26,17 @@ export function login(formData, cb, errcb) {
           type: LOGIN_SUCCESS,
           payload: response.data,
         });
-        console.log(response?.data?.message, "login");
+        // console.log(response?.data?.message, "login");
 
         cb && cb(response?.data?.message);
-        console.log(LOGIN_INIT);
+        // console.log(LOGIN_INIT);
       } else if (response.status === 400) {
         dispatch({
           type: LOGIN_ERROR,
           payload: response.data,
         });
 
-        console.log(response?.data, "error");
+        // console.log(response?.data, "error");
         errcb && errcb(response);
       }
     } catch (err) {
@@ -44,7 +44,6 @@ export function login(formData, cb, errcb) {
         type: LOGIN_ERROR,
         payload: err?.response?.data,
       });
-      console.log(err?.response?.data?.message, "error 2");
       errcb && errcb(err?.response?.data?.message);
     }
   };
@@ -57,6 +56,6 @@ export function logoutAction() {
     await dispatch({
       type: LOGOUT,
     });
-    persistStore().purge(); // This will clear the persisted session storage
+    persistStore().purge();
   };
 }
