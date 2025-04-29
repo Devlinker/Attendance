@@ -217,34 +217,35 @@ const Dashboard = () => {
 
   const handleCheckin = (val) => {
     setLoading(true);
-    getLocation()
-      .then(({ lat, lon }) => {
-        Alert("Unable to access location");
-        console.log("Latitude:", lat, "Longitude:", lon);
-        dispatch(
-          checkin(
-            {
-              latitude: lat,
-              longitude: lon,
-              user_id: 1,
-              project_id: 1,
-            },
-            (message) => {
-              notify("success", "Success!", message);
-            },
-            (message) => {
-              notify("error", "Failed!", message);
-            },
-            () => {
-              setChecked(val);
-            }
-          )
-        ).finally(() => setLoading(false));
-      })
-      .catch((error) => {
-        setLoading(false);
-        // Alert("Unable to access location");
-      });
+    dispatch(
+      checkin(
+        {
+          latitude: 11.006917744650659,
+          longitude: 76.95064125131175,
+          user_id: 1,
+          project_id: 1,
+        },
+        (message) => {
+          notify("success", "Success!", message);
+        },
+        (message) => {
+          notify("error", "Failed!", message);
+        },
+        () => {
+          setChecked(val);
+        }
+      )
+    ).finally(() => setLoading(false));
+    // getLocation()
+    //   .then(({ lat, lon }) => {
+    //     console.log("Latitude:", lat, "Longitude:", lon);
+        
+    //   })
+  //     .catch((error) => {
+  //       console.log(error, "testing");
+  //       setLoading(false);
+  //       // Alert("Unable to access location");
+  //     });
   };
   const legendsData = [
     { key: "absent", title: "Absent" },

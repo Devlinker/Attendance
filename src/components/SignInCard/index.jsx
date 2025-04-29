@@ -197,10 +197,10 @@ const SignInCard = () => {
             }
           />
 
-          <div className="options">
-            <Commoncheckbox />
-            <a>Forgot Password?</a>
-          </div>
+          {/* <div className="options"> */}
+            {/* <Commoncheckbox /> */}
+            {/* <a>Forgot Password?</a> */}
+          {/* </div> */}
 
           <CustomButton
             className="test"
