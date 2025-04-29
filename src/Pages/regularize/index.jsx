@@ -211,6 +211,13 @@ const RegularizeList = () => {
       },
     },
     {
+      title: "Regularize Reason",
+      key: "regularize_reason",
+      render: (_, record) => {
+        return <span>{toCamelCase(record.regularize_reason)}</span>;
+      },
+    },
+    {
       title: "Check-In Time",
       dataIndex: "checked_in_time",
       key: "checked_in_time",

@@ -39,7 +39,12 @@ export default function regularizeReducer(state = INIT_STATE, action) {
       };
 
     case REGULARIZE_LIST_FAILURE:
-      return { ...state, loading: false, error: action.payload };
+      return {
+        ...state,
+        loading: false,
+        regularizeList: [],
+        error: action.payload,
+      };
     case REGULARIZE_FAILURE:
       return { ...state, loading: false, error: action.payload };
 
