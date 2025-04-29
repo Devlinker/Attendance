@@ -11,10 +11,11 @@ import projectsreducer from "./shared/projects";
 import companyreducer from "./shared/company";
 import regularizeReducer from "./shared/regularize";
 import passwordreducer from "./shared/changepassword";
+import { LOGOUT } from "./shared/ActionTypes";
 // import statusreducer from "./shared/changestatus";
 
-export default function createReducer(history) {
-  const rootReducer = combineReducers({
+const appReducer = (history) =>
+  combineReducers({
     router: connectRouter(history),
     login: LoginReducer,
     // Signup: SignupReducer,
@@ -28,6 +29,15 @@ export default function createReducer(history) {
     password: passwordreducer,
     // status: statusreducer,
   });
+
+export default function createReducer(history) {
+  const rootReducer = (state, action) => {
+    if (action.type === LOGOUT) {
+      // Clear all state on logout
+      state = undefined;
+    }
+    return appReducer(history)(state, action);
+  };
 
   return rootReducer;
 }
