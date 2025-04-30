@@ -141,15 +141,15 @@ const Tablecalendar = ({
               year: e.year(),
             });
           } else {
-            if (
-              (selectedDate.isAfter(firstDayOfMonth, "day") ||
-                selectedDate.isSame(firstDayOfMonth, "day")) &&
-              selectedDate.isBefore(today, "day")
-            ) {
-              validateDateClick(e);
-            } else {
-              // do nothing
-            }
+            // if (
+            //   (selectedDate.isAfter(firstDayOfMonth, "day") ||
+            //     selectedDate.isSame(firstDayOfMonth, "day")) &&
+            //   selectedDate.isBefore(today, "day")
+            // ) {
+            //   validateDateClick(e);
+            // } else {
+            //   // do nothing
+            // }
           }
         }}
       />
