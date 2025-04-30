@@ -25,7 +25,8 @@ export function changestatus(isActive, user_id, cb) {
           type: CHANGE_STATUS_SUCCESS,
           payload: response.data,
         });
-        cb && cb();
+        // console.log(response?.data?.message);
+        cb && cb(response?.data?.message);
       } else if (response.status === 400) {
         dispatch({
           type: CHANGE_STATUS_FAILURE,

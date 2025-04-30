@@ -18,10 +18,13 @@ import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { changestatus } from "../../shared/changestatus/actions";
 import { FaUserAlt, FaUserAltSlash } from "react-icons/fa";
 import { LuUserRoundCheck, LuUserRoundX } from "react-icons/lu";
+import { useNotification } from "../../utils/notifications";
 
 const Employee = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const notify = useNotification();
 
   const employeeData = useSelector((state) => state.employee);
   const [showPassChangeModal, setShowPassChangeModal] = useState(false);
@@ -107,14 +110,15 @@ const Employee = () => {
                   style={{ color: "green", cursor: "pointer" }}
                   onClick={() =>
                     dispatch(
-                      changestatus(false, record.user_id, () =>
+                      changestatus(false, record.user_id, (message) => {
+                        notify("success", "Success!", message);
                         dispatch(
                           employeelist({
                             page: employeeData?.pagination?.current || 1,
                             items: employeeData?.pagination?.pageSize || 10,
                           })
-                        )
-                      )
+                        );
+                      })
                     )
                   }
                 />
@@ -123,13 +127,15 @@ const Employee = () => {
                   style={{ color: "red", cursor: "pointer" }}
                   onClick={() =>
                     dispatch(
-                      changestatus(true, record.user_id),
-                      dispatch(
-                        employeelist({
-                          page: employeeData?.pagination?.current || 1,
-                          items: employeeData?.pagination?.pageSize || 10,
-                        })
-                      )
+                      changestatus(true, record.user_id, (message) => {
+                        notify("success", "Success!", message);
+                        dispatch(
+                          employeelist({
+                            page: employeeData?.pagination?.current || 1,
+                            items: employeeData?.pagination?.pageSize || 10,
+                          })
+                        );
+                      })
                     )
                   }
                 />
@@ -246,10 +252,16 @@ const Employee = () => {
               }));
             } else {
               dispatch(
-                changepassword(tempSelectedData?.user_id, {
-                  new_password: formData.data.new_password,
-                  confirm_password: formData.data.confirm_password,
-                })
+                changepassword(
+                  tempSelectedData?.user_id,
+                  {
+                    new_password: formData.data.new_password,
+                    confirm_password: formData.data.confirm_password,
+                  },
+                  (message) => {
+                    notify("success", "Success!", message);
+                  }
+                )
               );
               setShowPassChangeModal(false);
               setTempSelectedData({});

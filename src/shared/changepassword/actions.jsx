@@ -6,7 +6,7 @@ import {
   CHANGE_PASSWORD_SUCCESS,
 } from "../ActionTypes.jsx";
 
-export function changepassword(user_id, params) {
+export function changepassword(user_id, params , cb) {
   return async (dispatch) => {
     dispatch({
       type: CHANGE_PASSWORD,
@@ -22,6 +22,8 @@ export function changepassword(user_id, params) {
           type: CHANGE_PASSWORD_SUCCESS,
           payload: response.data,
         });
+        console.log(response?.data?.message, "test");
+        cb && cb(response?.data?.message);
       } else if (response.status === 400) {
         dispatch({
           type: CHANGE_PASSWORD_FAILURE,

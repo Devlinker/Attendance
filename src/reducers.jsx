@@ -11,6 +11,7 @@ import projectsreducer from "./shared/projects";
 import companyreducer from "./shared/company";
 import regularizeReducer from "./shared/regularize";
 import passwordreducer from "./shared/changepassword";
+import statusreducer from "./shared/changestatus"
 import { LOGOUT } from "./shared/ActionTypes";
 // import statusreducer from "./shared/changestatus";
 
@@ -27,7 +28,7 @@ const appReducer = (history) =>
     company: companyreducer,
     regularize: regularizeReducer,
     password: passwordreducer,
-    // status: statusreducer,
+    status: statusreducer,
   });
 
 export default function createReducer(history) {
