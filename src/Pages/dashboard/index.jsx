@@ -236,25 +236,14 @@ const Dashboard = () => {
         },
         (message) => {
           notify("success", "Success!", message);
+          setChecked(val);
         },
         (message) => {
           notify("error", "Failed!", message);
-        },
-        () => {
-          setChecked(val);
+          setChecked(!val);
         }
       )
     ).finally(() => setLoading(false));
-    // getLocation()
-    //   .then(({ lat, lon }) => {
-    //     console.log("Latitude:", lat, "Longitude:", lon);
-
-    //   })
-    //     .catch((error) => {
-    //       console.log(error, "testing");
-    //       setLoading(false);
-    //       // Alert("Unable to access location");
-    //     });
   };
   const legendsData = [
     { key: "absent", title: "Absent" },

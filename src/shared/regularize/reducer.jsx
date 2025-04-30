@@ -30,7 +30,7 @@ export default function regularizeReducer(state = INIT_STATE, action) {
       return {
         ...state,
         loading: false,
-        regularizeList: action.payload?.data || [], // Assuming your API response has a "data" key
+        regularizeList: action.payload?.data || [], 
         pagination: {
           total: action.payload?.pagination?.total_count || 0,
           pageSize: action.payload?.pagination?.items || 10,

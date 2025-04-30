@@ -40,11 +40,9 @@ export const getSystemInfo = () => {
   const ua = navigator.userAgent;
   const platform = navigator.platform;
 
-  // OS detection
-  const osMatch = ua.match(/\(([^)]+)\)/); // Extracts string inside ()
+  const osMatch = ua.match(/\(([^)]+)\)/); 
   const osInfo = osMatch ? osMatch[1] : "Unknown OS";
 
-  // Browser detection
   let browser = "Unknown Browser";
   let version = "";
 
@@ -66,7 +64,6 @@ export const getSystemInfo = () => {
     version = match ? match[1] : "";
   }
 
-  // Engine (like WebKit or Gecko)
   const engineMatch = ua.match(/(AppleWebKit|Gecko)\/[\d.]+/);
   const engine = engineMatch ? engineMatch[0] : "Unknown Engine";
 

@@ -5,8 +5,6 @@ import {
   GET_TUTOR_SUCCESS,
   GET_TUTOR_FAILURE,
 } from "./../ActionTypes.jsx";
-// import FileSaver from "file-saver";
-// import { downloadExcelFile } from "../../../../utils/utilFunctions.jsx";
 
 export function getTutor(params) {
   return async (dispatch) => {

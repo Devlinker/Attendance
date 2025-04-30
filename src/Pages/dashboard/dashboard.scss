@@ -2,7 +2,6 @@
 
 .tablecalendar {
   padding: 10px;
-  // border: 1px solid #ccc;
   border-radius: 10px;
 }
 .ant-layout {
@@ -17,7 +16,6 @@
     padding: 0px 20px;
     .worklogcontainer {
       border-bottom: 1px solid #ccc;
-      //   padding: 25px;
       margin-bottom: 24px;
       .dashboard-header {
         display: flex;
@@ -36,7 +34,6 @@
           }
           p {
             font-size: 16px;
-            // padding-bottom: 30px;
           }
         }
       }
@@ -62,7 +59,6 @@
           color: #825c9a;
         }
         .checkinout {
-          // padding-bottom: 5px;
           font-size: 25px;
           font-weight: 500;
         }
@@ -89,7 +85,6 @@
           }
         }
         .checkinouttime {
-          // padding-bottom: 12px;
           font-size: 14px;
           font-weight: 500;
         }
@@ -98,7 +93,6 @@
           position: absolute;
           bottom: -21px;
           padding: 0;
-          // padding-top: 15px;
           .productivityhours {
             font-size: 12px;
             font-weight: 500;
@@ -119,7 +113,6 @@
         position: relative;
         .checkout-content {
           padding: 13px;
-          // margin-top: 15px;
           border: 1px solid #ccc;
           border-radius: 50px;
           display: flex;
@@ -131,42 +124,35 @@
         button r {
           margin-top: 5px;
         }
-        // gap: 40px;
-        // padding-right: 20px;
-        //     padding-bottom: 12px;
-        // font-size: 14px;
-        // font-weight: 500;
       }
     }
-    .calendar-legends{
+    .calendar-legends {
       display: flex;
       justify-content: space-evenly;
       padding-bottom: 30px;
-      .color{
+      .color {
         height: 20px;
         width: 20px;
         border-radius: 5px;
-
       }
-      .absent{
+      .absent {
         background-color: #ee0a0a85;
       }
-      .present{
+      .present {
         background-color: #52c41a59;
       }
-      .weekend{
+      .weekend {
         background-color: #ffa50066;
       }
-      .weekendholiday{
-        background-color:#0000ff73;
+      .weekendholiday {
+        background-color: #0000ff73;
       }
-      .mandatory{
+      .mandatory {
         background-color: #cccccc7d;
       }
-      .resricted{
+      .resricted {
         background-color: #00ffff8f;
       }
-      
     }
   }
   .dashboardright {
@@ -182,11 +168,7 @@
     .worklog-container {
       height: 42vh;
       overflow-x: hidden;
-    overflow-y: auto;
-      // overflow: scroll;
-      // padding: 10px 15px 15px 15px;
-      // box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-      // border-radius: 15px;
+      overflow-y: auto;
       border-top: 1px solid #ccc;
     }
     .profilecard-container {
@@ -198,7 +180,7 @@
         flex-direction: column;
         align-items: center;
         gap: 7px;
-        .profilremployee-code{
+        .profilremployee-code {
           display: flex;
           justify-content: center;
           padding-top: 7px;
@@ -213,7 +195,7 @@
             justify-content: center;
             align-items: center;
             padding: 11px;
-            svg{
+            svg {
               width: 19px;
               height: 19px;
             }

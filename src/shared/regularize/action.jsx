@@ -10,7 +10,6 @@ import {
 import { axiosPrivate } from "../axios";
 import * as API_END_POINT from "../ApiEndPoints";
 
-// fetch regularize listing
 export const fetchRegularizeList = (page = 1, items = 10) => {
   return async (dispatch) => {
     dispatch({ type: REGULARIZE_LIST });
@@ -22,9 +21,6 @@ export const fetchRegularizeList = (page = 1, items = 10) => {
           items: Number(items) || 10,
         },
       });
-
-      // Log the response to verify the structure
-      
 
       dispatch({ type: REGULARIZE_LIST_SUCCESS, payload: res.data });
     } catch (err) {

@@ -44,6 +44,8 @@ export function checkin(payload, successCb, errorcb) {
         type: CHECK_IN_FAILURE,
         payload: err.response.data,
       });
+      console.log(err?.response?.data?.message, "test");
+      errorcb && errorcb(err?.response?.data?.message);
     }
   };
 }
