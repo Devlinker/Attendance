@@ -259,7 +259,6 @@ const Dashboard = () => {
       [key]: time,
     }));
   };
-
   return (
     <div className="dashboardmain">
       <CommonPopup
@@ -339,7 +338,6 @@ const Dashboard = () => {
                   }
                 />
               </Form.Item>
-
               <TextAreainput
                 value={regularizeTimeRange.regularize_reason}
                 onChange={(val) =>
